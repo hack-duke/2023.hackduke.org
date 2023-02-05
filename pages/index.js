@@ -22,7 +22,8 @@ export default function Home() {
 
     return (
         <>
-            <div className="bg-[url('/temp.svg')] w-[100vw] h-[100vh] bg-center bg-cover"></div>
+            {/* <div className="w-[100%] h-[3rem]">hi</div> */}
+            <div className="bg-[url('/temp_mobile.svg')] lg:bg-[url('/temp.svg')] w-[100vw] h-[100vh] lg:h-[120vh] bg-center bg-cover"></div>
         </>
     );
 }
