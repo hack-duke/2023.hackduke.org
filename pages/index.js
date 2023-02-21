@@ -5,23 +5,23 @@ export default function Home() {
 
     return (
         <>
-            <div className="w-[100%] h-[5rem] flex items-center justify-center bg-[#121432] text-white">
+            <div className="flex h-[5rem] w-[100%] items-center justify-center bg-[#121432] text-white">
                 <a
-                    className="w-[30%] h-[3rem] m-[5%] flex items-center justify-center  border-2 hover:cursor-pointer"
+                    className="m-[5%] flex h-[3rem] w-[30%] items-center justify-center  border-2 hover:cursor-pointer"
                     target="_blank"
                     rel="noopener noreferrer"
                     href="https://www.hackduke.org/">
                     Our Website
                 </a>
                 <a
-                    className="w-[30%] h-[3rem] m-[5%] flex items-center justify-center border-2 hover:cursor-pointer"
+                    className="m-[5%] flex h-[3rem] w-[30%] items-center justify-center border-2 hover:cursor-pointer"
                     target="_blank"
                     rel="noopener noreferrer"
                     href="mailto:sponsorship@hackduke.org">
                     Sponsor Us
                 </a>
             </div>
-            <div className="bg-[url('/temp_mobile.svg')] lg:bg-[url('/temp.svg')] w-[100vw] h-[100vh] lg:h-[120vh] bg-center bg-cover"></div>
+            <div className="h-[100vh] w-[100vw] bg-[url('/temp_mobile.svg')] bg-cover bg-center lg:h-[120vh] lg:bg-[url('/temp.svg')]"></div>
         </>
     );
 }
