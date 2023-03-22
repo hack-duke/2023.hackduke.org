@@ -39,7 +39,7 @@ const Navbar = () => {
                 }}
             />
             <FaTwitter
-                className="m-[1%] mr-5 cursor-pointer"
+                className="m-[1%] mr-4 cursor-pointer"
                 size={35}
                 onClick={() => {
                     window.open("https://twitter.com/hackduke", "_blank");
