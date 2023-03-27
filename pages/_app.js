@@ -9,7 +9,7 @@ const manrope = Manrope({
 export default function App({ Component, pageProps }) {
     return (
         <main className={`${manrope.variable} font-sans`}>
-            <Component {...pageProps} />;
+            <Component {...pageProps} />
         </main>
     );
 }

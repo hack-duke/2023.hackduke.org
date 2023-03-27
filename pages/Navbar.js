@@ -1,23 +1,21 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 
-const Navbar = () => {
+function Navbar() {
     return (
         <div className="sticky top-0 flex h-[5rem] w-[100%] items-center justify-end gap-x-1 bg-[#121432] bg-opacity-60 text-white backdrop-blur-md">
             <a
                 className="m-[5%] flex h-[3rem] w-[25%] items-center justify-center rounded-lg border-2 hover:cursor-pointer hover:bg-indigo-600"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://www.hackduke.org/"
-            >
+                href="https://www.hackduke.org/">
                 Home
             </a>
             <a
                 className="m-[5%] flex h-[3rem] w-[25%] items-center justify-center rounded-lg border-2 hover:cursor-pointer hover:bg-indigo-600"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="mailto:sponsorship@hackduke.org"
-            >
+                href="mailto:sponsorship@hackduke.org">
                 Sponsor Us
             </a>
 
@@ -47,6 +45,6 @@ const Navbar = () => {
             />
         </div>
     );
-};
+}
 
 export default Navbar;

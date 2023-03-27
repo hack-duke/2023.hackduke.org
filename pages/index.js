@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 
 import Navbar from "./Navbar";
 
-export default function Home() {
+function Home() {
     const router = useRouter();
 
     return (
@@ -12,3 +12,5 @@ export default function Home() {
         </>
     );
 }
+
+export default Home;
