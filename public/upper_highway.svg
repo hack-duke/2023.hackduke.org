@@ -49,7 +49,7 @@
 <path d="M933 1105C933 1124.88 915.987 1141 895 1141C874.013 1141 857 1124.88 857 1105C857 1085.12 874.013 1069 895 1069C915.987 1069 933 1085.12 933 1105Z" fill="#E73E55"/>
 </g>
 <g filter="url(#filter6_d_1008_22780)">
-<path d="M-12.6445 995.743C586.79 1030.41 930.006 1151.09 1547.89 1447.48L1349.4 1536.45C694.309 1165.19 412.188 1084.36 -12.6445 1057.34V995.743Z" fill="#2C0109"/>
+<path d="M-12.6445 995.743C586.79 1030.41 930.006 1151.09 1547.89 1447.48L1484.5 1609C829.41 1237.73 412.188 1084.36 -12.6445 1057.34V995.743Z" fill="#2C0109"/>
 </g>
 <defs>
 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -97,7 +97,7 @@
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_1008_22780"/>
 </filter>
-<filter id="filter6_d_1008_22780" x="-22.6445" y="975.743" width="1600.53" height="580.711" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter6_d_1008_22780" x="-22.6445" y="975.743" width="1600.53" height="653.257" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="10"/>
