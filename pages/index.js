@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Stars from "../components/Stars";
 
 export default function Home() {
     const router = useRouter();
@@ -59,15 +60,22 @@ export default function Home() {
     return (
         <>
             <div className="h-screen w-screen overflow-x-hidden overflow-y-auto" style={{perspective: "5px"}}>
-                <div className="absolute max-w-none w-full"    
+            <div className="absolute max-w-none w-full"    
                     style={{
                         transform : `scale(${parallaxParameters.background.scale})
                                     translate3d(${parallaxParameters.background.x},
                                                 ${parallaxParameters.background.y},
                                                 ${parallaxParameters.background.z})`
                 }}>
-                    <img className="fixed w-full" src="/background.svg"></img>
-                    <div className="absolute text-cyan-50 text-lg top-[30%] left-[40%]">fds</div>
+                <Stars> 
+                <img className="fixed w-full" src="/backgroundnostars.svg"></img></Stars>
+                   
+                <div className="absolute top-0 left-0 w-screen h-screen ">
+                <img src="/moon.svg" className=""/> 
+                    <img src="/buildings.svg" className=" "/> 
+                    
+                    </div>
+                    <div className="absolute text-cyan-50 text-lg top-[30%] left-[40%]">fds</div> 
                 </div>
 
                 <div className="absolute max-w-none w-full"    
