@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Stars from "../components/Stars";
 
 export default function Home() {
     const router = useRouter();
@@ -68,8 +69,19 @@ export default function Home() {
                                                 ${parallaxParameters.background.y},
                                                 ${parallaxParameters.background.z})`,
                     }}>
-                    <img className="fixed w-full" src="/background.svg"></img>
-                    <div className="absolute top-[30%] left-[40%] text-lg text-cyan-50"></div>
+                    <Stars>
+                        <img
+                            className="fixed w-full"
+                            src="/backgroundnostars.svg"></img>
+                    </Stars>
+
+                    <div className="absolute top-[-8vh] left-[-10vw] h-screen w-[125vw] scale-[70%] lg:left-[5vw] lg:top-[5vh] lg:scale-[100%]">
+                        <img src="/moon.svg" className="" />
+                    </div>
+                    <div className="absolute top-[10rem] left-0 h-screen w-[125vw]">
+                        <img src="/buildings.svg" className="" />
+                    </div>
+                    {/* <div className="absolute top-[30%] left-[40%] text-lg text-cyan-50"></div> */}
                 </div>
 
                 <div
