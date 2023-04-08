@@ -1,5 +1,43 @@
 import { useRouter } from "next/router";
 
+function ArrowSign(props){
+    return (<>
+    <div className="absolute"
+            style={{transform : `translate(${props.x}, ${props.y})`,
+                    width : `${props.width}`}}>
+        <img className="w-full" src="/arrow_sign_frame.svg"></img>
+        <div className="absolute overflow-hidden top-0 w-[40%] h-[84%]"
+            style={{transform : `skew(0, 15deg) translate(120%, 0%)`}}>
+            <div className="relative grid gap-y-[5%] animate-arrowSignLoop">
+                <img src="/arrow_sign.svg"></img>
+                <img src="/arrow_sign.svg"></img>
+                <img src="/arrow_sign.svg"></img>
+            </div>
+        </div>
+    </div>
+    
+    </>)
+}
+
+function AboutUsHeader(props){
+    return (<>
+    <div className="absolute grid font-semibold text-[3.5vw] whitespace-nowrap text-white"
+        style={{transform : `translate(${props.x},calc(${props.y} + (100vw - 1200px)/100))`,
+                height : `${props.height}`,
+                width : `${props.width}`}}>
+        <div className="absolute overflow-hidden h-[26.5%] w-[66.7%] top-[36%]"
+            style={{transform : `skew(0, -11.2deg)`}}>
+            <div className="animate-textLoop">ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US</div>
+        </div>
+        <div className="absolute overflow-hidden h-[26.5%] w-[33.4%] right-0"
+            style={{transform: `skew(0, 13.7deg)`, top : `calc(22.2%)`}}>
+            <div style={{transform: `translateX(calc(-24.9% - (100vw - 1200px)/140))`}}><div className="animate-textLoop">ABOUT US ABOUT US ABOUT US ABOUT</div></div>
+        </div>
+    </div>  
+    
+    </>)
+}
+
 export default function Home() {
     const router = useRouter();
     
@@ -17,10 +55,22 @@ export default function Home() {
             z : "-8px",
             text : {
                 x : "80%",
-                y : "275%",
+                y : "310%",
                 w : "35%",
                 fontScale : "3vw",
-            }
+                skewY : "-11deg",
+            },
+            arrowSign : {
+                x : "70.8vw",
+                y : "16vw",
+                w : "19%",
+            },
+            scrollingHeader : {
+                x : "3.9vw",
+                y : "65vw",
+                h : "17vw",
+                w : "92.9%",
+            },
         },
         billboard : {
             scale : "1",
@@ -32,7 +82,7 @@ export default function Home() {
                 y : "130%",
                 w : "75%",
                 fontScale : "4vw",
-            }
+            },
         },
         lower_highway : {
             scale : "1.1",
@@ -55,10 +105,10 @@ export default function Home() {
 
     }
 
-    // stronger parallax
     return (
         <>
             <div className="h-screen w-screen overflow-x-hidden overflow-y-auto" style={{perspective: "5px"}}>
+                {/* Background */}
                 <div className="absolute max-w-none w-full"    
                     style={{
                         transform : `scale(${parallaxParameters.background.scale})
@@ -67,9 +117,9 @@ export default function Home() {
                                                 ${parallaxParameters.background.z})`
                 }}>
                     <img className="fixed w-full" src="/background.svg"></img>
-                    <div className="absolute text-cyan-50 text-lg top-[30%] left-[40%]">fds</div>
                 </div>
 
+                {/* Main Building */}
                 <div className="absolute max-w-none w-full"    
                     style={{
                         transform : `scale(${parallaxParameters.main_building.scale})
@@ -77,14 +127,30 @@ export default function Home() {
                                                 ${parallaxParameters.main_building.y},
                                                 ${parallaxParameters.main_building.z})`
                     }}>
+                    {/* Building SVG */}
                     <img className="absolute w-full" src="/main_building.svg"></img>
-                    <div className="absolute whitespace-normal bg-red-500"
-                         style={{transform : `translate(${parallaxParameters.main_building.text.x}, ${parallaxParameters.main_building.text.y})
-                                              matrix(0.98, -0.175, 0, 1, 0, 0)`,
+                    
+                    {/* Arrow Sign */}
+                    <ArrowSign x={parallaxParameters.main_building.arrowSign.x}
+                               y={parallaxParameters.main_building.arrowSign.y}
+                               width={parallaxParameters.main_building.arrowSign.w}></ArrowSign>
+                    
+                    {/* Main Text */}
+                    <div className="absolute whitespace-normal text-center leading-snug"
+                         style={{transform : `translate(${parallaxParameters.main_building.text.x}, calc(${parallaxParameters.main_building.text.y} + (100vw - 1200px)/100))
+                                              skew(0, ${parallaxParameters.main_building.text.skewY})`,
                                  fontSize : `${parallaxParameters.main_building.text.fontScale}`,
                                  width : `${parallaxParameters.main_building.text.w}`}}>
-                        ham burger ham burger ham burger ha m burger ham burger ham burger ham burger ham burger hamb urger ham burger h amburger ha mburger 
+                        <div>Hackduke is a premier intercollegiate hackathon for social good. Blah blah blah blah blahh blah blah</div>
+                        <br/>
+                        <a href="https://hackduke.org/" className="font-bold underline">Learn More →</a>
                     </div>
+
+                    {/* Scrolling Header */}
+                    <AboutUsHeader x={parallaxParameters.main_building.scrollingHeader.x}
+                                   y={parallaxParameters.main_building.scrollingHeader.y}
+                                   height={parallaxParameters.main_building.scrollingHeader.h}
+                                   width={parallaxParameters.main_building.scrollingHeader.w}></AboutUsHeader>
                 </div>
 
                 <div className="absolute max-w-none w-full"    
