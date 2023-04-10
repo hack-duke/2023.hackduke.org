@@ -1,6 +1,67 @@
 import { useRouter } from "next/router";
 import Stars from "../components/Stars";
 
+function ArrowSign(props) {
+    return (
+        <>
+            <div
+                className="absolute"
+                style={{
+                    transform: `translate(${props.x}, ${props.y})`,
+                    width: `${props.width}`,
+                }}>
+                <img className="w-full" src="/arrow_sign_frame.svg"></img>
+                <div
+                    className="absolute top-0 h-[84%] w-[40%] overflow-hidden"
+                    style={{ transform: `skew(0, 15deg) translate(120%, 0%)` }}>
+                    <div className="relative grid animate-arrowSignLoop gap-y-[5%]">
+                        <img src="/arrow_sign.svg"></img>
+                        <img src="/arrow_sign.svg"></img>
+                        <img src="/arrow_sign.svg"></img>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+function AboutUsHeader(props) {
+    return (
+        <>
+            <div
+                className="absolute grid whitespace-nowrap text-[3.48vw] font-semibold text-white lg:text-[3.52vw]"
+                style={{
+                    transform: `translate(${props.x},calc(${props.y} + (100vw - 1200px)/100))`,
+                    height: `${props.height}`,
+                    width: `${props.width}`,
+                }}>
+                <div
+                    className="absolute top-[46%] h-[26.5%] w-[66.7%] overflow-hidden lg:top-[38%]"
+                    style={{ transform: `skew(0, -11.2deg)` }}>
+                    <div className="animate-textLoop">
+                        ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US
+                        ABOUT US
+                    </div>
+                </div>
+                <div
+                    className="absolute right-0 top-[32%] h-[26.5%] w-[33.4%] overflow-hidden lg:top-[24%]"
+                    style={{
+                        transform: `skew(0, 13.7deg)`,
+                    }}>
+                    <div
+                        style={{
+                            transform: `translateX(calc(-24.9% - (100vw - 1200px)/140))`,
+                        }}>
+                        <div className="animate-textLoop">
+                            ABOUT US ABOUT US ABOUT US ABOUT
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
 export default function Home() {
     const router = useRouter();
 
@@ -8,7 +69,7 @@ export default function Home() {
         background: {
             scale: "11.4",
             x: "0",
-            y: "-45vh",
+            y: "-320px",
             z: "-50px",
         },
         main_building: {
@@ -18,9 +79,21 @@ export default function Home() {
             z: "-8px",
             text: {
                 x: "80%",
-                y: "275%",
+                y: "310%",
                 w: "35%",
                 fontScale: "3vw",
+                skewY: "-11deg",
+            },
+            arrowSign: {
+                x: "70.8vw",
+                y: "16vw",
+                w: "19%",
+            },
+            scrollingHeader: {
+                x: "3.9vw",
+                y: "65vw",
+                h: "17vw",
+                w: "92.9%",
             },
         },
         billboard: {
@@ -55,12 +128,12 @@ export default function Home() {
         },
     };
 
-    // stronger parallax
     return (
         <>
             <div
                 className="h-screen w-screen overflow-y-auto overflow-x-hidden"
                 style={{ perspective: "5px" }}>
+                {/* Background */}
                 <div
                     className="absolute w-full max-w-none"
                     style={{
@@ -92,21 +165,50 @@ export default function Home() {
                                                 ${parallaxParameters.main_building.y},
                                                 ${parallaxParameters.main_building.z})`,
                     }}>
+                    {/* Building SVG */}
                     <img
                         className="absolute w-full"
                         src="/main_building.svg"></img>
+
+                    {/* Arrow Sign */}
+                    <ArrowSign
+                        x={parallaxParameters.main_building.arrowSign.x}
+                        y={parallaxParameters.main_building.arrowSign.y}
+                        width={
+                            parallaxParameters.main_building.arrowSign.w
+                        }></ArrowSign>
+
+                    {/* Main Text */}
                     <div
-                        className="absolute whitespace-normal bg-red-500"
+                        className="absolute whitespace-normal text-center leading-snug"
                         style={{
-                            transform: `translate(${parallaxParameters.main_building.text.x}, ${parallaxParameters.main_building.text.y})
-                                              matrix(0.98, -0.175, 0, 1, 0, 0)`,
+                            transform: `translate(${parallaxParameters.main_building.text.x}, calc(${parallaxParameters.main_building.text.y} + (100vw - 1200px)/100))
+                                              skew(0, ${parallaxParameters.main_building.text.skewY})`,
                             fontSize: `${parallaxParameters.main_building.text.fontScale}`,
                             width: `${parallaxParameters.main_building.text.w}`,
                         }}>
-                        ham burger ham burger ham burger ha m burger ham burger
-                        ham burger ham burger ham burger hamb urger ham burger h
-                        amburger ha mburger
+                        <div>
+                            Hackduke is a premier intercollegiate hackathon for
+                            social good. Blah blah blah blah blahh blah blah
+                        </div>
+                        <br />
+                        <a
+                            href="https://hackduke.org/"
+                            className="font-bold underline">
+                            Learn More →
+                        </a>
                     </div>
+
+                    {/* Scrolling Header */}
+                    <AboutUsHeader
+                        x={parallaxParameters.main_building.scrollingHeader.x}
+                        y={parallaxParameters.main_building.scrollingHeader.y}
+                        height={
+                            parallaxParameters.main_building.scrollingHeader.h
+                        }
+                        width={
+                            parallaxParameters.main_building.scrollingHeader.w
+                        }></AboutUsHeader>
                 </div>
 
                 <div
