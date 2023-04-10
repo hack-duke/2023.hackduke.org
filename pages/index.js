@@ -69,7 +69,7 @@ export default function Home() {
         background: {
             scale: "11.4",
             x: "0",
-            y: "-320px",
+            y: "-45vh",
             z: "-50px",
         },
         main_building: {
