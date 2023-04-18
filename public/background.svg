@@ -33,11 +33,16 @@
      inkscape:current-layer="svg39838" />
    <style>
       @keyframes fadeinout {
-         0%,100% { filter: brightness(0.2); }
-         50% { filter: brightness(1) url(#filter6_d_1008_17000); }
+         0%, 100%{
+         opacity: 0.2;
+            
+         }
+         50% {
+            opacity: 1;
+         }
       }
 
-      .fade-on-off {animation: fadeinout 0.5s linear forwards infinite}
+      .fade-on-off {animation: fadeinout 1s ease-in-out infinite}
    </style>
   <path
      d="M-4.86719 0H1440.65V7109H-4.86719V0Z"
@@ -37631,6 +37636,8 @@
      d="M1349 623.012L1346 498.512L1347 498.488L1350 622.988L1349 623.012Z"
      fill="black"
      id="path39480" />
+
+   <!-- animated light -->
   <g
      filter="url(#filter6_d_1008_17000)"
      id="g39484"
