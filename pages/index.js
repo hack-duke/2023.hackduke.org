@@ -213,15 +213,13 @@ export default function Home() {
                     }}>
                     <img className="absolute w-full" src="/billboard.svg"></img>
                     <div
-                        className="absolute whitespace-normal bg-red-500"
+                        className="absolute whitespace-normal bg-red-500 text-center"
                         style={{
                             transform: `translate(${parallaxParameters.billboard.text.x}, ${parallaxParameters.billboard.text.y})`,
                             fontSize: `${parallaxParameters.billboard.text.fontScale}`,
                             width: `${parallaxParameters.billboard.text.w}`,
                         }}>
-                        ham burger ham burger ham burger ha m burger ham burger
-                        ham burger ham burger ham burger hamb urger ham burger h
-                        amburger ha mburger
+                        <b>FAQ:</b>
                     </div>
                 </div>
 
