@@ -66,10 +66,10 @@ export default function Home() {
             y: "-10vw",
             z: "-8px",
             text: {
-                x: "80%",
-                y: "310%",
-                w: "35%",
-                fontScale: "3vw",
+                x: "60%",
+                y: "325%",
+                w: "40%",
+                fontScale: "2.5vw",
                 skewY: "-11deg",
             },
             dateSign: {
@@ -180,8 +180,8 @@ export default function Home() {
                             width: `${parallaxParameters.main_building.text.w}`,
                         }}>
                         <div>
-                            Hackduke is a premier intercollegiate hackathon for social good. Blah blah blah blah blahh
-                            blah blah
+                            Hackduke is the premier intercollegiate hackathon for social good. We unite passionate
+                            students to create meaningful solutions for social impact.
                         </div>
                         <br />
                         <a href="https://hackduke.org/" className="font-bold underline">
