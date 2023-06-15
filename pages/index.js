@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import Stars from "../components/Stars";
 
-function ArrowSign(props) {
+function DateSign(props) {
     return (
         <>
             <div
@@ -10,16 +10,8 @@ function ArrowSign(props) {
                     transform: `translate(${props.x}, ${props.y})`,
                     width: `${props.width}`,
                 }}>
-                <img className="w-full" src="/arrow_sign_frame.svg"></img>
-                <div
-                    className="absolute top-0 h-[84%] w-[40%] overflow-hidden"
-                    style={{ transform: `skew(0, 15deg) translate(120%, 0%)` }}>
-                    <div className="relative grid animate-arrowSignLoop gap-y-[5%]">
-                        <img src="/arrow_sign.svg"></img>
-                        <img src="/arrow_sign.svg"></img>
-                        <img src="/arrow_sign.svg"></img>
-                    </div>
-                </div>
+                <img className="w-full" src="/dates.svg"></img>
+
             </div>
         </>
     );
@@ -84,9 +76,9 @@ export default function Home() {
                 fontScale: "3vw",
                 skewY: "-11deg",
             },
-            arrowSign: {
+            dateSign: {
                 x: "70.8vw",
-                y: "16vw",
+                y: "8vw",
                 w: "19%",
             },
             scrollingHeader: {
@@ -170,13 +162,13 @@ export default function Home() {
                         className="absolute w-full"
                         src="/main_building.svg"></img>
 
-                    {/* Arrow Sign */}
-                    <ArrowSign
-                        x={parallaxParameters.main_building.arrowSign.x}
-                        y={parallaxParameters.main_building.arrowSign.y}
+                    {/* Date Sign */}
+                    <DateSign
+                        x={parallaxParameters.main_building.dateSign.x}
+                        y={parallaxParameters.main_building.dateSign.y}
                         width={
-                            parallaxParameters.main_building.arrowSign.w
-                        }></ArrowSign>
+                            parallaxParameters.main_building.dateSign.w
+                        }></DateSign>
 
                     {/* Main Text */}
                     <div
