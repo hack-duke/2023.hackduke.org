@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Stars from "../components/Stars";
 
@@ -59,10 +60,7 @@ function AboutUsHeader(props) {
     );
 }
 
-export default function Home() {
-    const router = useRouter();
-
-    const parallaxParameters = {
+ const parallaxParameters = {
         background: {
             scale: "11.4",
             x: "0",
@@ -122,8 +120,152 @@ export default function Home() {
             x: "0",
             y: "350vw",
             z: "0",
+            speaker_billboard: {
+            x: "23.5%",
+            y: "21.2%",
+            w: "83.5%",
+            h: "53%",
+            skewY: "0",
+                name: {
+                    x: "18%",
+                    y: "-910%",
+                    w: "50%",
+                    fontScale: "7vw",
+                    skewY: "-11deg",
+                },
+                title: {
+                    x: "6.7vw",
+                    y: "-95.5vw",
+                    w: "36.5vw",
+                    h: "16vw",
+                    fontScale: "3.7vw",
+                    skewY: "-11deg",
+                },
+                talk: {
+                    x: "6.7vw",
+                    y: "-93vw",
+                    w: "35%",
+                    fontScale: "4vw",
+                    skewY: "-11deg",
+                },
+                pic: {
+                    x: "126%",
+                    y: "-163%",
+                    h: "40%",
+                    w: "39%",
+                    skewY: "-11deg",
+                },
+                right_arrow: {
+                    x: "73vw",
+                    y: "-93vw",
+                    h: "5%",
+                    w: "5%",
+                    skewY: "-5deg",
+                },
+                left_arrow: {
+                    x: "6vw",
+                    y: "-83vw",
+                    h: "5.1%",
+                    w: "5.1%",
+                    skewY: "-4deg",
+                },
+            
+            },
         },
     };
+
+function Speaker( {speaker} ) {
+
+    const [windowWidth, setWindowWidth] = useState(0);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        }; 
+
+        window.addEventListener("resize", handleResize);
+
+        handleResize();
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+
+    }, []); 
+    return (
+        <>
+             <div 
+                className="rounded-full overflow-hidden"
+                style={{
+                    transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.pic.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.pic.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1100px)/100))
+                                    skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.pic.skewY})`,
+                    height: `${parallaxParameters.foreground_buildings.speaker_billboard.pic.h}`,
+                    width: `${parallaxParameters.foreground_buildings.speaker_billboard.pic.w}`,
+                }}>
+                
+                    <img src={speaker.pic} alt={speaker.name} className="w-full h-full" />
+            </div>
+                <div
+                    className="font-semibold text-[#4A181D]"
+                    style={{
+                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.name.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.name.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1100px)/100))
+                                        skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.name.skewY})`,
+                        fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.name.fontScale}`,
+                        width: `${parallaxParameters.foreground_buildings.speaker_billboard.name.w}`,
+                }}>
+                {speaker.name}
+                </div>
+                <div
+                    className="flex items-center"
+                    style={{
+                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.title.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.title.y} + (100vw - 1200px)/100 - (${windowWidth}px - 950px)/100))
+                                        skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.title.skewY})`,
+                                    height: `${parallaxParameters.foreground_buildings.speaker_billboard.title.h}`,
+                        fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.title.fontScale}`,
+                        width: `${parallaxParameters.foreground_buildings.speaker_billboard.title.w}`,
+                }}>
+                <p class=" font-semibold text-[#A5706F] ">{speaker.title}</p>
+                </div>
+                <div
+                    className="font-semibold text-[#4A181D]"
+                    style={{
+                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.talk.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.talk.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1100px)/100))
+                                        skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.talk.skewY})`,
+                        fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.fontScale}`,
+                        width: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.w}`,
+                }}>
+                {speaker.talk}
+                </div>
+        </>
+    );
+  }
+
+export default function Home() {
+    const router = useRouter();
+    const [currentSpeakerIndex, setCurrentSpeakerIndex] = useState(0);
+    
+    const [windowWidth, setWindowWidth] = useState(0);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        }; 
+
+        window.addEventListener("resize", handleResize);
+
+        handleResize();
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+
+    }, []); 
+
+    const speakers = [
+        { name: 'Neetu Rajpal', pic: "/speakers/neetu.png", title:"CTO @ Oscar Health", talk:"Lorem ipsum dolor sit amet"},
+        { name: 'Tobi Walter', pic: "/speakers/tobi.png", title:"Principal @ Cofounders Capital", talk:"Lorem ipsum dolor sit amet"},
+      ];
+   
 
     return (
         <>
@@ -271,6 +413,61 @@ export default function Home() {
                                                 ${parallaxParameters.foreground_buildings.z})`,
                     }}>
                     <img className="absolute w-full" src="/foreground_buildings.svg"></img>
+                    {/* Speaker Billboard */}
+                <div 
+                    className="relative w-full max-w-none"
+                    style={{
+                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.y} + (100vw - 1200px)/100 - (${windowWidth}px - 800px)/100))
+                                              skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.skewY})`,
+                            height: `${parallaxParameters.foreground_buildings.speaker_billboard.h}`,
+                            width: `${parallaxParameters.foreground_buildings.speaker_billboard.w}`,
+                    }}>
+                    <img className="relative w-full"
+                        src="/speakers/speakerbg.svg"></img>
+                   <Speaker
+                    speaker={speakers[currentSpeakerIndex]}
+                    ></Speaker>
+                    <div 
+                        className="cursor-pointer"
+                        style={{
+                            transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.y} + (100vw - 1200px)/100))
+                                              skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.skewY})`,
+                            height: `${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.h}`,
+                            width: `${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.w}`,
+                        }}>
+                
+                            <img src="/speakers/right_arrow.svg" 
+                            alt="right arrow" 
+                            className="w-full h-full"
+                            onClick={() =>
+                            setCurrentSpeakerIndex(
+                                (currentSpeakerIndex + 1) % speakers.length
+                            )
+                            }
+                            />
+                    </div>
+                    <div 
+                        className="cursor-pointer"
+                        style={{
+                            transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.y} + (100vw - 1200px)/100))
+                                              skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.skewY})`,
+                            height: `${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.h}`,
+                            width: `${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.w}`,
+                        }}>
+                
+                            <img src="/speakers/left_arrow.svg" 
+                            alt="right arrow" 
+                            className="w-full h-full" 
+                            onClick={() =>
+                            setCurrentSpeakerIndex(
+                                (currentSpeakerIndex - 1 + speakers.length) % speakers.length
+                            )
+                            }
+
+                            />
+                    </div>
+                </div>
+                    
                 </div>
             </div>
         </>
