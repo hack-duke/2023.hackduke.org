@@ -213,13 +213,13 @@ export default function Home() {
                     }}>
                     <img className="absolute w-full" src="/billboard.svg"></img>
                     <div
-                        className="absolute whitespace-normal text-center font-manrope"
+                        className="absolute whitespace-normal text-center font-manrope max-width-[20%]"
                         style={{
                             transform: `translate(${parallaxParameters.billboard.text.x}, ${parallaxParameters.billboard.text.y})`,
                             fontSize: `${parallaxParameters.billboard.text.fontScale}`,
                             width: `${parallaxParameters.billboard.text.w}`,
                         }}>
-                        <div className="space-y-[10vh]">
+                        <div className="space-y-8">
                             <div>
                                 <b>FAQ:</b>
                                 <br />
