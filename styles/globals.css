@@ -3,3 +3,12 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Martel+Sans&family=Montserrat&family=Oxygen:wght@400&display=swap");
+
+@font-face {
+    font-family: "Manrope";
+    src: url("../public/fonts/Manrope-VariableFont_wght.ttf") format("truetype");
+}
+
+.font-manrope {
+    font-family: "Manrope", sans-serif;
+}

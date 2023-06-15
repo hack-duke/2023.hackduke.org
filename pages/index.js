@@ -31,7 +31,8 @@ function AboutUsHeader(props) {
                     className="absolute top-[46%] h-[26.5%] w-[66.7%] overflow-hidden lg:top-[38%]"
                     style={{ transform: `skew(0, -11.2deg)` }}>
                     <div className="animate-textLoop">
-                        ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US
+                        ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US
+                        ABOUT US
                     </div>
                 </div>
                 <div
@@ -43,7 +44,9 @@ function AboutUsHeader(props) {
                         style={{
                             transform: `translateX(calc(-24.9% - (100vw - 1200px)/140))`,
                         }}>
-                        <div className="animate-textLoop">ABOUT US ABOUT US ABOUT US ABOUT</div>
+                        <div className="animate-textLoop">
+                            ABOUT US ABOUT US ABOUT US ABOUT
+                        </div>
                     </div>
                 </div>
             </div>
@@ -67,10 +70,10 @@ export default function Home() {
             y: "-10vw",
             z: "-8px",
             text: {
-                x: "60%",
-                y: "325%",
-                w: "40%",
-                fontScale: "2.5vw",
+                x: "80%",
+                y: "310%",
+                w: "35%",
+                fontScale: "3vw",
                 skewY: "-11deg",
             },
             dateSign: {
@@ -92,7 +95,7 @@ export default function Home() {
             z: "-4px",
             text: {
                 x: "13%",
-                y: "130%",
+                y: "65%",
                 w: "75%",
                 fontScale: "4vw",
             },
@@ -119,19 +122,9 @@ export default function Home() {
 
     return (
         <>
-            <div className="fixed right-[50px] z-10 w-[10%] min-w-[60px] hover:cursor-pointer">
-                <a
-                    className=""
-                    id="mlh-trust-badge"
-                    href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2024-season&utm_content=white"
-                    target="_blank">
-                    <img
-                        src="https://s3.amazonaws.com/logged-assets/trust-badge/2024/mlh-trust-badge-2024-white.svg"
-                        alt="Major League Hacking 2024 Hackathon Season"
-                    />
-                </a>
-            </div>
-            <div className="w-screen h-screen overflow-x-hidden overflow-y-auto" style={{ perspective: "5px" }}>
+            <div
+                className="h-screen w-screen overflow-y-auto overflow-x-hidden"
+                style={{ perspective: "5px" }}>
                 {/* Background */}
                 <div
                     className="absolute w-full max-w-none"
@@ -142,7 +135,9 @@ export default function Home() {
                                                 ${parallaxParameters.background.z})`,
                     }}>
                     <Stars>
-                        <img className="fixed w-full" src="/backgroundnostars.svg"></img>
+                        <img
+                            className="fixed w-full"
+                            src="/backgroundnostars.svg"></img>
                     </Stars>
 
                     <div className="absolute top-[-8vh] left-[-10vw] h-screen w-[125vw] scale-[70%] lg:left-[5vw] lg:top-[5vh] lg:scale-[100%]">
@@ -153,18 +148,6 @@ export default function Home() {
                     </div>
                     {/* <div className="absolute top-[30%] left-[40%] text-lg text-cyan-50"></div> */}
                 </div>
-                {/* <div className="fixed right-[11vw] w-[10%] min-w-[80px] hover:cursor-pointer">
-                    <a
-                        className=""
-                        id="mlh-trust-badge"
-                        href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2024-season&utm_content=white"
-                        target="_blank">
-                        <img
-                            src="https://s3.amazonaws.com/logged-assets/trust-badge/2024/mlh-trust-badge-2024-white.svg"
-                            alt="Major League Hacking 2024 Hackathon Season"
-                        />
-                    </a>
-                </div> */}
 
                 <div
                     className="absolute w-full max-w-none"
@@ -175,7 +158,9 @@ export default function Home() {
                                                 ${parallaxParameters.main_building.z})`,
                     }}>
                     {/* Building SVG */}
-                    <img className="absolute w-full" src="/main_building.svg"></img>
+                    <img
+                        className="absolute w-full"
+                        src="/main_building.svg"></img>
 
                     {/* Date Sign */}
                     <DateSign
@@ -187,7 +172,7 @@ export default function Home() {
 
                     {/* Main Text */}
                     <div
-                        className="absolute leading-snug text-center whitespace-normal"
+                        className="absolute whitespace-normal text-center leading-snug"
                         style={{
                             transform: `translate(${parallaxParameters.main_building.text.x}, calc(${parallaxParameters.main_building.text.y} + (100vw - 1200px)/100))
                                               skew(0, ${parallaxParameters.main_building.text.skewY})`,
@@ -195,11 +180,13 @@ export default function Home() {
                             width: `${parallaxParameters.main_building.text.w}`,
                         }}>
                         <div>
-                            Hackduke is the premier intercollegiate hackathon for social good. We unite passionate
-                            students to create meaningful solutions for social impact.
+                            Hackduke is a premier intercollegiate hackathon for
+                            social good. Blah blah blah blah blahh blah blah
                         </div>
-                        <br></br>
-                        <a href="https://hackduke.org/" className="font-bold underline">
+                        <br />
+                        <a
+                            href="https://hackduke.org/"
+                            className="font-bold underline">
                             Learn More →
                         </a>
                     </div>
@@ -208,8 +195,12 @@ export default function Home() {
                     <AboutUsHeader
                         x={parallaxParameters.main_building.scrollingHeader.x}
                         y={parallaxParameters.main_building.scrollingHeader.y}
-                        height={parallaxParameters.main_building.scrollingHeader.h}
-                        width={parallaxParameters.main_building.scrollingHeader.w}></AboutUsHeader>
+                        height={
+                            parallaxParameters.main_building.scrollingHeader.h
+                        }
+                        width={
+                            parallaxParameters.main_building.scrollingHeader.w
+                        }></AboutUsHeader>
                 </div>
 
                 <div
@@ -222,13 +213,20 @@ export default function Home() {
                     }}>
                     <img className="absolute w-full" src="/billboard.svg"></img>
                     <div
-                        className="absolute whitespace-normal bg-red-500 text-center"
+                        className="absolute whitespace-normal text-center font-manrope"
                         style={{
                             transform: `translate(${parallaxParameters.billboard.text.x}, ${parallaxParameters.billboard.text.y})`,
                             fontSize: `${parallaxParameters.billboard.text.fontScale}`,
                             width: `${parallaxParameters.billboard.text.w}`,
                         }}>
-                        <b>FAQ:</b>
+                        <div className="space-y-[10vh]">
+                            <div>
+                                <b>FAQ:</b>
+                                <br />
+                                <p>Do you need experience to participate?</p>
+                            </div>
+                            <p>Nope! Code for Good is open to all participants and is a great way to introduce yourself to the world of coding and product development.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -240,7 +238,9 @@ export default function Home() {
                                                 ${parallaxParameters.lower_highway.y},
                                                 ${parallaxParameters.lower_highway.z})`,
                     }}>
-                    <img className="absolute w-full" src="/lower_highway.svg"></img>
+                    <img
+                        className="absolute w-full"
+                        src="/lower_highway.svg"></img>
                 </div>
 
                 <div
@@ -251,7 +251,9 @@ export default function Home() {
                                                 ${parallaxParameters.upper_highway.y},
                                                 ${parallaxParameters.upper_highway.z})`,
                     }}>
-                    <img className="absolute w-full" src="/upper_highway.svg"></img>
+                    <img
+                        className="absolute w-full"
+                        src="/upper_highway.svg"></img>
                 </div>
 
                 <div
@@ -262,7 +264,9 @@ export default function Home() {
                                                 ${parallaxParameters.foreground_buildings.y},
                                                 ${parallaxParameters.foreground_buildings.z})`,
                     }}>
-                    <img className="absolute w-full" src="/foreground_buildings.svg"></img>
+                    <img
+                        className="absolute w-full"
+                        src="/foreground_buildings.svg"></img>
                 </div>
             </div>
         </>
