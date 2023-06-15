@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Stars from "../components/Stars";
 
-function ArrowSign(props) {
+function DateSign(props) {
     return (
         <>
             <div
@@ -11,16 +11,7 @@ function ArrowSign(props) {
                     transform: `translate(${props.x}, ${props.y})`,
                     width: `${props.width}`,
                 }}>
-                <img className="w-full" src="/arrow_sign_frame.svg"></img>
-                <div
-                    className="absolute top-0 h-[84%] w-[40%] overflow-hidden"
-                    style={{ transform: `skew(0, 15deg) translate(120%, 0%)` }}>
-                    <div className="relative grid animate-arrowSignLoop gap-y-[5%]">
-                        <img src="/arrow_sign.svg"></img>
-                        <img src="/arrow_sign.svg"></img>
-                        <img src="/arrow_sign.svg"></img>
-                    </div>
-                </div>
+                <img className="w-full" src="/dates.svg"></img>
             </div>
         </>
     );
@@ -73,15 +64,15 @@ function AboutUsHeader(props) {
             y: "-10vw",
             z: "-8px",
             text: {
-                x: "60%",
-                y: "325%",
-                w: "40%",
-                fontScale: "2.5vw",
+                x: "80%",
+                y: "310%",
+                w: "35%",
+                fontScale: "3vw",
                 skewY: "-11deg",
             },
-            arrowSign: {
+            dateSign: {
                 x: "70.8vw",
-                y: "16vw",
+                y: "8vw",
                 w: "19%",
             },
             scrollingHeader: {
@@ -98,7 +89,7 @@ function AboutUsHeader(props) {
             z: "-4px",
             text: {
                 x: "13%",
-                y: "130%",
+                y: "65%",
                 w: "75%",
                 fontScale: "4vw",
             },
@@ -303,18 +294,6 @@ export default function Home() {
                     </div>
                     {/* <div className="absolute top-[30%] left-[40%] text-lg text-cyan-50"></div> */}
                 </div>
-                {/* <div className="fixed right-[11vw] w-[10%] min-w-[80px] hover:cursor-pointer">
-                    <a
-                        className=""
-                        id="mlh-trust-badge"
-                        href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2024-season&utm_content=white"
-                        target="_blank">
-                        <img
-                            src="https://s3.amazonaws.com/logged-assets/trust-badge/2024/mlh-trust-badge-2024-white.svg"
-                            alt="Major League Hacking 2024 Hackathon Season"
-                        />
-                    </a>
-                </div> */}
 
                 <div
                     className="absolute w-full max-w-none"
@@ -327,11 +306,11 @@ export default function Home() {
                     {/* Building SVG */}
                     <img className="absolute w-full" src="/main_building.svg"></img>
 
-                    {/* Arrow Sign */}
-                    <ArrowSign
-                        x={parallaxParameters.main_building.arrowSign.x}
-                        y={parallaxParameters.main_building.arrowSign.y}
-                        width={parallaxParameters.main_building.arrowSign.w}></ArrowSign>
+                    {/* Date Sign */}
+                    <DateSign
+                        x={parallaxParameters.main_building.dateSign.x}
+                        y={parallaxParameters.main_building.dateSign.y}
+                        width={parallaxParameters.main_building.dateSign.w}></DateSign>
 
                     {/* Main Text */}
                     <div
@@ -343,10 +322,10 @@ export default function Home() {
                             width: `${parallaxParameters.main_building.text.w}`,
                         }}>
                         <div>
-                            Hackduke is the premier intercollegiate hackathon for social good. We unite passionate
-                            students to create meaningful solutions for social impact.
+                            Hackduke is a premier intercollegiate hackathon for social good. Blah blah blah blah blahh
+                            blah blah
                         </div>
-                        <br></br>
+                        <br />
                         <a href="https://hackduke.org/" className="font-bold underline">
                             Learn More →
                         </a>
@@ -370,15 +349,23 @@ export default function Home() {
                     }}>
                     <img className="absolute w-full" src="/billboard.svg"></img>
                     <div
-                        className="absolute whitespace-normal bg-red-500"
+                        className="absolute text-center whitespace-normal font-manrope"
                         style={{
                             transform: `translate(${parallaxParameters.billboard.text.x}, ${parallaxParameters.billboard.text.y})`,
                             fontSize: `${parallaxParameters.billboard.text.fontScale}`,
                             width: `${parallaxParameters.billboard.text.w}`,
                         }}>
-                        {/* ham burger ham burger ham burger ha m burger ham burger
-                        ham burger ham burger ham burger hamb urger ham burger h
-                        amburger ha mburger */}
+                        <div className="space-y-[10vh]">
+                            <div>
+                                <b>FAQ:</b>
+                                <br />
+                                <p>Do you need experience to participate?</p>
+                            </div>
+                            <p>
+                                Nope! Code for Good is open to all participants and is a great way to introduce yourself
+                                to the world of coding and product development.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
