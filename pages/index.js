@@ -212,7 +212,7 @@ function Speaker({ speaker }) {
                     fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.title.fontScale}`,
                     width: `${parallaxParameters.foreground_buildings.speaker_billboard.title.w}`,
                 }}>
-                <p class=" font-semibold text-[#A5706F] ">{speaker.title}</p>
+                <p className=" font-semibold text-[#A5706F] ">{speaker.title}</p>
             </div>
             <div
                 className="font-semibold text-[#4A181D]"
