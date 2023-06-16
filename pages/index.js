@@ -118,25 +118,26 @@ function AboutUsHeader(props) {
             h: "53%",
             skewY: "0",
                 name: {
-                    x: "18%",
-                    y: "-910%",
-                    w: "50%",
+                    x: "12%",
+                    y: "-920%",
+                    w: "70%",
                     fontScale: "7vw",
                     skewY: "-11deg",
                 },
                 title: {
                     x: "6.7vw",
                     y: "-95.5vw",
-                    w: "36.5vw",
-                    h: "16vw",
-                    fontScale: "3.7vw",
+                    w: "34vw",
+                    h: "18vw",
+                    fontScale: "3.5vw",
                     skewY: "-11deg",
                 },
                 talk: {
                     x: "6.7vw",
-                    y: "-93vw",
-                    w: "35%",
-                    fontScale: "4vw",
+                    y: "-92vw",
+                    w: "32vw",
+                    h: "11vw",
+                    fontScale: "3.5vw",
                     skewY: "-11deg",
                 },
                 pic: {
@@ -148,14 +149,14 @@ function AboutUsHeader(props) {
                 },
                 right_arrow: {
                     x: "73vw",
-                    y: "-93vw",
+                    y: "-94.5vw",
                     h: "5%",
                     w: "5%",
                     skewY: "-5deg",
                 },
                 left_arrow: {
                     x: "6vw",
-                    y: "-83vw",
+                    y: "-84vw",
                     h: "5.1%",
                     w: "5.1%",
                     skewY: "-4deg",
@@ -209,7 +210,7 @@ function Speaker( {speaker} ) {
                 <div
                     className="flex items-center"
                     style={{
-                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.title.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.title.y} + (100vw - 1200px)/100 - (${windowWidth}px - 950px)/100))
+                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.title.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.title.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1200px)/100))
                                         skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.title.skewY})`,
                                     height: `${parallaxParameters.foreground_buildings.speaker_billboard.title.h}`,
                         fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.title.fontScale}`,
@@ -220,8 +221,9 @@ function Speaker( {speaker} ) {
                 <div
                     className="font-semibold text-[#4A181D]"
                     style={{
-                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.talk.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.talk.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1100px)/100))
+                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.talk.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.talk.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1200px)/100))
                                         skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.talk.skewY})`,
+                                        height: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.h}`,
                         fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.fontScale}`,
                         width: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.w}`,
                 }}>
@@ -253,8 +255,10 @@ export default function Home() {
     }, []); 
 
     const speakers = [
-        { name: 'Neetu Rajpal', pic: "/speakers/neetu.png", title:"CTO @ Oscar Health", talk:"Lorem ipsum dolor sit amet"},
-        { name: 'Tobi Walter', pic: "/speakers/tobi.png", title:"Principal @ Cofounders Capital", talk:"Lorem ipsum dolor sit amet"},
+        { name: 'Yunha Kim', pic: "/speakers/yunha.jpeg", title:"Founder & CEO @ Sleep Reset", talk:"Opening ceremony speaker"},
+        { name: 'Sherard Griffin', pic: "/speakers/sherard.jpeg", title:"Sr. Director of Engineering, AI services @ Red Hat", talk:"Closing Ceremony Speaker"},
+        { name: 'Alfredo Deza', pic: "/speakers/alfredo.jpeg", title:"Principal Cloud Advocate @ Microsoft", talk:"Workshop: Github Copilot"},
+        { name: 'Sanjay Kamlani', pic: "/speakers/sanjay.jpeg", title:"Founder & CEO @ Maker5", talk:"Saturday Speaker: Startup Talk"},
       ];
    
 
@@ -417,7 +421,7 @@ export default function Home() {
                     <div 
                         className="cursor-pointer"
                         style={{
-                            transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.y} + (100vw - 1200px)/100))
+                            transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.y} + (100vw - 500px)/100))
                                               skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.skewY})`,
                             height: `${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.h}`,
                             width: `${parallaxParameters.foreground_buildings.speaker_billboard.right_arrow.w}`,
@@ -436,7 +440,7 @@ export default function Home() {
                     <div 
                         className="cursor-pointer"
                         style={{
-                            transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.y} + (100vw - 1200px)/100))
+                            transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.y} + (100vw - 700px)/100))
                                               skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.skewY})`,
                             height: `${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.h}`,
                             width: `${parallaxParameters.foreground_buildings.speaker_billboard.left_arrow.w}`,
