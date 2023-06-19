@@ -345,7 +345,7 @@ export default function Home() {
     ];
 
     return (
-        <>
+        <div className="">
             <div className="fixed right-[50px] z-10 w-[10%] min-w-[60px] hover:cursor-pointer">
                 <a
                     className=""
@@ -613,7 +613,7 @@ export default function Home() {
                             const [day, events] = entry;
 
                             return (
-                                <div>
+                                <div key={day}>
                                     <div
                                         style={{
                                             alignItems: "center",
@@ -661,6 +661,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
