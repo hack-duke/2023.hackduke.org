@@ -1,0 +1,68 @@
+{
+    "Friday": [
+        {
+            "start_time": "5:00 PM",
+            "end_time": "7:00 PM",
+            "title": "Check-in",
+            "location": "CIEMAS Lobby"
+        },
+        {
+            "start_time": "8:00 PM",
+            "end_time": "8:30 PM",
+            "title": "Hardware Distribution",
+            "location": "Fitzpatrick Atrium"
+        }
+    ],
+    "Saturday": [
+        {
+            "start_time": "8:00 AM",
+            "end_time": "8:30 AM",
+            "title": "Breakfast",
+            "location": "Twinnie's Cafe"
+        },
+        {
+            "start_time": "1:00 PM",
+            "end_time": "1:30 PM",
+            "title": "Checkbook Info Session",
+            "location": "Zoom"
+        },
+        {
+            "start_time": "2:00 PM",
+            "end_time": "2:30 PM",
+            "title": "Track Talk: Inequality",
+            "location": "Wilkinson 136"
+        }
+    ],
+    "Sunday": [
+        {
+            "start_time": "8:00 AM",
+            "end_time": "8:30 AM",
+            "title": "Breakfast",
+            "location": "Twinnie's Cafe"
+        },
+        {
+            "start_time": "12:00 PM",
+            "end_time": "1:00 PM",
+            "title": "Lunch",
+            "location": "Twinnie's Cafe"
+        },
+        {
+            "start_time": "3:00 PM",
+            "end_time": "4:00 PM",
+            "title": "Spicy Noodle Challenge",
+            "location": "Twinnie's Cafe"
+        },
+        {
+            "start_time": "6:00 PM",
+            "end_time": "7:00 PM",
+            "title": "Dinner",
+            "location": "Twinnie's Cafe"
+        },
+        {
+            "start_time": "9:00 PM",
+            "end_time": "10:00 PM",
+            "title": "TechTreeRoot Info Session",
+            "location": "Twinnie's Cafe"
+        }
+    ]
+}
