@@ -151,7 +151,7 @@ const parallaxParameters = {
             },
             title: {
                 x: "6.7vw",
-                y: "-94.5vw",
+                y: "-94vw",
                 w: "34vw",
                 h: "18vw",
                 fontScale: "3.0vw",
@@ -228,7 +228,7 @@ function Speaker({ speaker }) {
                     height: `${parallaxParameters.foreground_buildings.speaker_billboard.pic.h}`,
                     width: `${parallaxParameters.foreground_buildings.speaker_billboard.pic.w}`,
                 }}>
-                <img src={speaker.pic} alt={speaker.name} className="w-full h-full" />
+                <img src={speaker.pic} alt={speaker.name} className="h-full w-full" />
             </div>
             <div
                 className="font-semibold text-[#4A181D]"
@@ -249,7 +249,7 @@ function Speaker({ speaker }) {
                     fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.title.fontScale}`,
                     width: `${parallaxParameters.foreground_buildings.speaker_billboard.title.w}`,
                 }}>
-                <p class=" font-semibold text-[#A5706F] ">{speaker.title}</p>
+                <p className=" font-semibold text-[#A5706F] ">{speaker.title}</p>
             </div>
             <div
                 className="font-semibold text-[#4A181D]"
@@ -352,7 +352,7 @@ export default function Home() {
                     />
                 </a>
             </div>
-            <div className="w-screen h-screen overflow-x-hidden overflow-y-auto" style={{ perspective: "5px" }}>
+            <div className="h-screen w-screen overflow-y-auto overflow-x-hidden" style={{ perspective: "5px" }}>
                 {/* Background */}
                 <div
                     className="absolute w-full max-w-none"
@@ -394,7 +394,7 @@ export default function Home() {
 
                     {/* Main Text */}
                     <div
-                        className="absolute leading-snug text-center whitespace-normal"
+                        className="absolute whitespace-normal text-center leading-snug"
                         style={{
                             transform: `translate(${parallaxParameters.main_building.text.x}, calc(${parallaxParameters.main_building.text.y} + (100vw - 1200px)/100))
                                               skew(0, ${parallaxParameters.main_building.text.skewY})`,
@@ -555,7 +555,7 @@ export default function Home() {
                             <img
                                 src="/speakers/right_arrow.svg"
                                 alt="right arrow"
-                                className="w-full h-full"
+                                className="h-full w-full"
                                 onClick={() => setCurrentSpeakerIndex((currentSpeakerIndex + 1) % speakers.length)}
                             />
                         </div>
@@ -571,6 +571,7 @@ export default function Home() {
                                 src="/speakers/left_arrow.svg"
                                 alt="left arrow"
                                 className="w-full h-full"
+
                                 onClick={() =>
                                     setCurrentSpeakerIndex(
                                         (currentSpeakerIndex - 1 + speakers.length) % speakers.length
