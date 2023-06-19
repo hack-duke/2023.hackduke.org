@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Stars from "../components/Stars";
 
-const scheduleData = require('../public/schedule.json');
+const scheduleData = require("../public/schedule.json");
 
 function DateSign(props) {
     return (
@@ -19,7 +19,6 @@ function DateSign(props) {
     );
 }
 
-
 function AboutUsHeader(props) {
     return (
         <>
@@ -31,20 +30,20 @@ function AboutUsHeader(props) {
                     width: `${props.width}`,
                 }}>
                 <div
-                    className="absolute top-[46%] h-[26.5%] w-[66.7%] overflow-hidden lg:top-[38%]"
+                    className="absolute top-[46%] h-[26.5%] w-[66.6%] overflow-hidden lg:top-[38%]"
                     style={{ transform: `skew(0, -11.2deg)` }}>
                     <div className="animate-textLoop">
                         ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US
                     </div>
                 </div>
                 <div
-                    className="absolute right-0 top-[32%] h-[26.5%] w-[33.4%] overflow-hidden lg:top-[24%]"
+                    className="absolute right-0 top-[33%] h-[26.5%] w-[33.4%] overflow-hidden lg:top-[25%]"
                     style={{
                         transform: `skew(0, 13.7deg)`,
                     }}>
                     <div
                         style={{
-                            transform: `translateX(calc(-24.9% - (100vw - 1200px)/140))`,
+                            transform: `translateX(calc(-16% - (100vw - 1200px)/140))`,
                         }}>
                         <div className="animate-textLoop">ABOUT US ABOUT US ABOUT US ABOUT</div>
                     </div>
@@ -66,9 +65,17 @@ const parallaxParameters = {
         x: "0",
         y: "-10vw",
         z: "-8px",
+        register: {
+            x: "10vw",
+            y: "36vw",
+            // w: "300vw",
+            fontScale: "2.5vw",
+            skewY: "0deg",
+            w: "50vw",
+        },
         text: {
             x: "60%",
-            y: "325%",
+            y: "335%",
             w: "40%",
             fontScale: "2.5vw",
             skewY: "-11deg",
@@ -79,10 +86,10 @@ const parallaxParameters = {
             w: "19%",
         },
         scrollingHeader: {
-            x: "3.9vw",
-            y: "65vw",
+            x: "6vw",
+            y: "67.5vw",
             h: "17vw",
-            w: "92.9%",
+            w: "88.5%",
         },
     },
     billboard: {
@@ -109,15 +116,15 @@ const parallaxParameters = {
                 h: "5%",
                 w: "5%",
                 skewY: "10deg",
-            }
+            },
         },
         pagination: {
             x: "13%",
             y: "70vw",
             w: "75%",
             h: "100%",
-            fontScale: "3vw"
-        }
+            fontScale: "3vw",
+        },
     },
     lower_highway: {
         scale: "1.1",
@@ -196,9 +203,9 @@ const parallaxParameters = {
                 h: "90vw",
                 fontScale: "1.7vw",
                 skewY: "-10deg",
-                titleFontScale: "4vw"
-            }
-        }
+                titleFontScale: "4vw",
+            },
+        },
     },
 };
 
@@ -286,7 +293,6 @@ export default function Home() {
         };
     }, []);
 
-
     useEffect(() => {
         const intervalId = setInterval(() => {
             setCurrentFAQIndex((currentFAQIndex + 1) % faqs.length);
@@ -326,17 +332,17 @@ export default function Home() {
     const faqs = [
         {
             question: "Who can I work with?",
-            answer: "Anyone! You are welcome to work alone, but we definitely recommend working with a team and get to know your fellow programmers from Duke and other schools!"
+            answer: "Anyone! You are welcome to work alone, but we definitely recommend working with a team and get to know your fellow programmers from Duke and other schools!",
         },
         {
             question: "What can I make?",
-            answer: "We welcome all software and hardware hacks that align with our tracks. Our mission is to code for social good, so make sure to create a project that is impactful for the track you have chosen! "
+            answer: "We welcome all software and hardware hacks that align with our tracks. Our mission is to code for social good, so make sure to create a project that is impactful for the track you have chosen! ",
         },
         {
             question: "Who can participate?",
-            answer: "You can participate as long as you're a student (undergraduate or graduate) 18 years or older. If you are a new grad, we’d love to have you as well! We aim to be beginner-friendly, so, all are welcome!"
-        }
-    ]
+            answer: "You can participate as long as you're a student (undergraduate or graduate) 18 years or older. If you are a new grad, we’d love to have you as well! We aim to be beginner-friendly, so, all are welcome!",
+        },
+    ];
 
     return (
         <>
@@ -387,10 +393,24 @@ export default function Home() {
                     <img className="absolute w-full" src="/main_building.svg"></img>
 
                     {/* Date Sign */}
-                    <DateSign
+                    {/* <DateSign
                         x={parallaxParameters.main_building.dateSign.x}
                         y={parallaxParameters.main_building.dateSign.y}
-                        width={parallaxParameters.main_building.dateSign.w}></DateSign>
+                        width={parallaxParameters.main_building.dateSign.w}></DateSign> */}
+
+                    <div
+                        className="absolute"
+                        style={{
+                            transform: `translate(${parallaxParameters.main_building.register.x}, calc(${parallaxParameters.main_building.register.y} + (100vw - 1200px)/100))
+                                          skew(0, ${parallaxParameters.main_building.register.skewY})`,
+                            fontSize: `${parallaxParameters.main_building.register.fontScale}`,
+                            width: `${parallaxParameters.main_building.register.w}`,
+                            // scale: `${parallaxParameters.main_building.register.scale}`,
+                        }}>
+                        <a target="_blank" href="https://forms.gle/cQrGHaULzoitipxZ6" rel="noopener noreferrer">
+                            <img src="/register_button.svg" className="w-full hover:cursor-pointer"></img>
+                        </a>
+                    </div>
 
                     {/* Main Text */}
                     <div
@@ -445,26 +465,25 @@ export default function Home() {
                                 maxHeight: `${parallaxParameters.billboard.text.h}`,
                             }}>
                             <div>
-                                <p><b>FAQ: </b> {faqs[currentFAQIndex].question}</p>
+                                <p>
+                                    <b>FAQ: </b> {faqs[currentFAQIndex].question}
+                                </p>
                             </div>
-                            <div>
-                                {faqs[currentFAQIndex].answer}
-                            </div>
+                            <div>{faqs[currentFAQIndex].answer}</div>
                         </div>
-
                     </div>
-                    <div style={{
-                        width: `${parallaxParameters.billboard.pagination.w}`,
-                        height: `${parallaxParameters.billboard.pagination.h}`,
-                        transform: `translate(${parallaxParameters.billboard.pagination.x}, ${parallaxParameters.billboard.pagination.y})`,
-                        textAlign: 'center',
-                        fontSize: `${parallaxParameters.billboard.pagination.fontScale}`,
-                        fontWeight: `bold`
-                        ,
-                    }}>
-
-                        <p>{currentFAQIndex + 1} / {faqs.length}</p>
-
+                    <div
+                        style={{
+                            width: `${parallaxParameters.billboard.pagination.w}`,
+                            height: `${parallaxParameters.billboard.pagination.h}`,
+                            transform: `translate(${parallaxParameters.billboard.pagination.x}, ${parallaxParameters.billboard.pagination.y})`,
+                            textAlign: "center",
+                            fontSize: `${parallaxParameters.billboard.pagination.fontScale}`,
+                            fontWeight: `bold`,
+                        }}>
+                        <p>
+                            {currentFAQIndex + 1} / {faqs.length}
+                        </p>
                     </div>
                     {/* <div
                         className="cursor-pointer z-[50]"
@@ -570,8 +589,7 @@ export default function Home() {
                             <img
                                 src="/speakers/left_arrow.svg"
                                 alt="left arrow"
-                                className="w-full h-full"
-
+                                className="h-full w-full"
                                 onClick={() =>
                                     setCurrentSpeakerIndex(
                                         (currentSpeakerIndex - 1 + speakers.length) % speakers.length
@@ -582,7 +600,8 @@ export default function Home() {
                     </div>
 
                     {/* Schedule */}
-                    <div className="relative w-full max-w-none"
+                    <div
+                        className="relative w-full max-w-none"
                         style={{
                             transform: `translate3d(${parallaxParameters.foreground_buildings.schedule.text.x},
                             ${parallaxParameters.foreground_buildings.schedule.text.y},
@@ -593,28 +612,55 @@ export default function Home() {
                         {Object.entries(scheduleData).map((entry) => {
                             const [day, events] = entry;
 
-                            return <div>
-                                <div style={{ alignItems: 'center', textAlign: 'center', fontSize: `${parallaxParameters.foreground_buildings.schedule.text.titleFontScale}` }}>
-                                    <b>{day}</b>
-                                    <hr style={{ borderColor: 'black', marginRight: '1rem', marginLeft: '1rem', marginBottom: '1rem' }} />
-                                </div>
-                                {events.map((event) => {
-                                    const start_time = event.start_time;
-                                    const end_time = event.end_time;
-                                    const title = event.title;
-                                    const location = event.location;
-
-                                    return <div style={{ marginBottom: '1rem', display: "flex", justifyContent: 'space-between', marginRight: '1rem', marginLeft: '1rem', fontSize: `${parallaxParameters.foreground_buildings.schedule.text.fontScale}` }}>
-                                        <p>{title} @ {location}</p>
-                                        <p>{start_time} - {end_time}</p>
+                            return (
+                                <div>
+                                    <div
+                                        style={{
+                                            alignItems: "center",
+                                            textAlign: "center",
+                                            fontSize: `${parallaxParameters.foreground_buildings.schedule.text.titleFontScale}`,
+                                        }}>
+                                        <b>{day}</b>
+                                        <hr
+                                            style={{
+                                                borderColor: "black",
+                                                marginRight: "1rem",
+                                                marginLeft: "1rem",
+                                                marginBottom: "1rem",
+                                            }}
+                                        />
                                     </div>
-                                })}
-                            </div>
-                        })}
+                                    {events.map((event) => {
+                                        const start_time = event.start_time;
+                                        const end_time = event.end_time;
+                                        const title = event.title;
+                                        const location = event.location;
 
+                                        return (
+                                            <div
+                                                style={{
+                                                    marginBottom: "1rem",
+                                                    display: "flex",
+                                                    justifyContent: "space-between",
+                                                    marginRight: "1rem",
+                                                    marginLeft: "1rem",
+                                                    fontSize: `${parallaxParameters.foreground_buildings.schedule.text.fontScale}`,
+                                                }}>
+                                                <p>
+                                                    {title} @ {location}
+                                                </p>
+                                                <p>
+                                                    {start_time} - {end_time}
+                                                </p>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
-            </div >
+            </div>
         </>
     );
 }
