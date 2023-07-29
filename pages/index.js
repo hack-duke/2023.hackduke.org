@@ -138,59 +138,59 @@ const parallaxParameters = {
         z: "0",
         speaker_billboard: {
             x: "23.5%",
-            y: "21.2%",
+            y: "22%",
             w: "83.5%",
             h: "53%",
             skewY: "0",
-            name: {
-                x: "12%",
-                y: "-920%",
-                w: "70%",
-                fontScale: "7vw",
-                skewY: "-11deg",
-            },
             title: {
-                x: "6.7vw",
-                y: "-94vw",
-                w: "34vw",
+                x: "1vw",
+                y: "-72vw",
+                w: "43vw",
                 h: "18vw",
-                fontScale: "3.0vw",
+                fontScale: "4.4vw",
                 skewY: "-11deg",
             },
             talk: {
-                x: "6.7vw",
-                y: "-92vw",
-                w: "32vw",
+                x: "6.6vw",
+                y: "-78vw",
+                w: "37vw",
                 h: "11vw",
-                fontScale: "3.5vw",
+                fontScale: "3vw",
                 skewY: "-11deg",
             },
             pic: {
-                x: "126%",
-                y: "-163%",
-                h: "40%",
-                w: "39%",
+                x: "159%",
+                y: "-178%",
+                h: "36%",
+                w: "35%",
+                skewY: "-11deg",
+            },
+            progress: {
+                x: "30vw",
+                y: "-45vw",
+                h: "36%",
+                w: "35%",
                 skewY: "-11deg",
             },
             right_arrow: {
-                x: "73vw",
-                y: "-94.5vw",
-                h: "5%",
-                w: "5%",
+                x: "71vw",
+                y: "-83.5vw",
+                h: "8%",
+                w: "8%",
                 skewY: "-5deg",
             },
             left_arrow: {
                 x: "6vw",
-                y: "-84vw",
-                h: "5.1%",
-                w: "5.1%",
+                y: "-76vw",
+                h: "8.3%",
+                w: "8.3%",
                 skewY: "-4deg",
             },
         },
         schedule: {
             text: {
                 x: "27vw",
-                y: "-40vw",
+                y: "-27vw",
                 z: "0",
                 w: "69vw",
                 h: "90vw",
@@ -202,7 +202,7 @@ const parallaxParameters = {
     },
 };
 
-function Speaker({ speaker }) {
+function Speaker({ speaker, currentSpeakerIndex, totalSpeakers }) {
     const [windowWidth, setWindowWidth] = useState(0);
 
     useEffect(() => {
@@ -230,18 +230,27 @@ function Speaker({ speaker }) {
                 }}>
                 <img src={speaker.pic} alt={speaker.name} className="h-full w-full" />
             </div>
-            <div
-                className="font-semibold text-[#4A181D]"
+            <div className="flex justify-center items-center"
                 style={{
-                    transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.name.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.name.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1100px)/100))
-                                        skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.name.skewY})`,
-                    fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.name.fontScale}`,
-                    width: `${parallaxParameters.foreground_buildings.speaker_billboard.name.w}`,
-                }}>
-                {speaker.name}
+                        transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.progress.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.progress.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1100px)/100))
+                                        skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.progress.skewY})`,
+                        height: `${parallaxParameters.foreground_buildings.speaker_billboard.progress.h}`,
+                        width: `${parallaxParameters.foreground_buildings.speaker_billboard.progress.w}`,
+                    }}
+            >
+                {Array.from({ length: totalSpeakers }).map((_, i) => (
+                    <div
+                    key={i}
+                    className={`h-2.5 w-2.5 mx-2 rounded-full ${i === currentSpeakerIndex ? 'bg-[#A65E63]' : 'bg-white'}
+                            sm:h-2 sm:w-2 sm:mx-2
+                            md:h-3 md:w-3 md:mx-3
+                            lg:h-4 lg:w-4 lg:mx-4`}
+                ></div>
+                ))}
             </div>
+            
             <div
-                className="flex items-center"
+                className="font-semibold text-white text-right"
                 style={{
                     transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.title.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.title.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1200px)/100))
                                         skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.title.skewY})`,
@@ -249,10 +258,10 @@ function Speaker({ speaker }) {
                     fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.title.fontScale}`,
                     width: `${parallaxParameters.foreground_buildings.speaker_billboard.title.w}`,
                 }}>
-                <p className=" font-semibold text-[#A5706F] ">{speaker.title}</p>
+                {speaker.name}
             </div>
             <div
-                className="font-semibold text-[#4A181D]"
+                className="font-semibold text-[#A65E63] text-right"
                 style={{
                     transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.talk.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.talk.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1200px)/100))
                                         skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.talk.skewY})`,
@@ -260,7 +269,7 @@ function Speaker({ speaker }) {
                     fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.fontScale}`,
                     width: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.w}`,
                 }}>
-                {speaker.talk}
+                {speaker.title}
             </div>
         </>
     );
@@ -298,28 +307,34 @@ export default function Home() {
 
     const speakers = [
         {
-            name: "Yunha Kim",
+            name: "YUNHA KIM",
             pic: "/speakers/yunha.jpeg",
             title: "Founder & CEO @ Sleep Reset",
             talk: "Opening Ceremony Speaker",
         },
         {
-            name: "Sherard Griffin",
+            name: "SHERARD GRIFFIN",
             pic: "/speakers/sherard.jpeg",
             title: "Sr. Director of Engineering, AI services @ Red Hat",
             talk: "Closing Ceremony Speaker",
         },
         {
-            name: "Alfredo Deza",
+            name: "ALFREDO DEZA",
             pic: "/speakers/alfredo.jpeg",
             title: "Principal Cloud Advocate @ Microsoft",
             talk: "Workshop: Github Copilot",
         },
         {
-            name: "Sanjay Kamlani",
+            name: "SANJAY KAMLANI",
             pic: "/speakers/sanjay.jpeg",
             title: "Founder & CEO @ Maker5",
             talk: "Saturday Speaker: Startup Talk",
+        },
+        {
+            name: "Justin Klein",
+            pic: "/speakers/justin.jpg",
+            title: "Managing Partner @ Vensana Capital",
+            talk: "Saturday Speaker: Innovation in Healthcare",
         },
     ];
 
@@ -466,40 +481,6 @@ export default function Home() {
                         <p>{currentFAQIndex + 1} / {faqs.length}</p>
 
                     </div>
-                    {/* <div
-                        className="cursor-pointer z-[50]"
-                        style={{
-                            transform: `translate(${parallaxParameters.billboard.text.right_arrow.x}, ${parallaxParameters.billboard.text.right_arrow.y})
-                                              skew(0, ${parallaxParameters.billboard.text.right_arrow.skewY})`,
-                            height: `${parallaxParameters.billboard.text.right_arrow.h}`,
-                            width: `${parallaxParameters.billboard.text.right_arrow.w}`,
-                        }}>
-                        <img
-                            src="/speakers/right_arrow.svg"
-                            alt="right arrow"
-                            className="w-full h-full"
-                            onClick={() => setCurrentFAQIndex((currentFAQIndex + 1) % faqs.length)}
-                        />
-                    </div>
-                    <div
-                        className="cursor-pointer z-[20]"
-                        style={{
-                            transform: `translate(${parallaxParameters.billboard.text.left_arrow.x}, ${parallaxParameters.billboard.text.left_arrow.y})
-                                              skew(0, ${parallaxParameters.billboard.text.left_arrow.skewY})`,
-                            height: `${parallaxParameters.billboard.text.left_arrow.h}`,
-                            width: `${parallaxParameters.billboard.text.left_arrow.w}`,
-                        }}>
-                        <img
-                            src="/speakers/left_arrow.svg"
-                            alt="left arrow"
-                            className="w-full h-full"
-                            onClick={() =>
-                                setCurrentFAQIndex(
-                                    (currentFAQIndex - 1 + faqs.length) % faqs.length
-                                )
-                            }
-                        />
-                    </div> */}
                 </div>
 
                 <div
@@ -543,7 +524,7 @@ export default function Home() {
                             width: `${parallaxParameters.foreground_buildings.speaker_billboard.w}`,
                         }}>
                         <img className="relative w-full" src="/speakers/speakerbg.svg"></img>
-                        <Speaker speaker={speakers[currentSpeakerIndex]}></Speaker>
+                        <Speaker speaker={speakers[currentSpeakerIndex]} currentSpeakerIndex={currentSpeakerIndex} totalSpeakers={speakers.length}></Speaker>
                         <div
                             className="cursor-pointer"
                             style={{
