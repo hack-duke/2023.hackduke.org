@@ -131,6 +131,58 @@ const parallaxParameters = {
         y: "170vw",
         z: "-1.5px",
     },
+    targets: {
+        education: {
+            scale: "0.13",
+            x: "250vw",
+            y: "560vw",
+            z: "-1px",
+        },
+        health: {
+            scale: "0.13",
+            x: "90vw",
+            y: "440vw",
+            z: "-1px",
+        },
+        environment: {
+            scale: "0.13",
+            x: "-130vw",
+            y: "490vw",
+            z: "-1px",
+        },
+        inequality: {
+            scale: "0.13",
+            x: "-200vw",
+            y: "390vw",
+            z: "-1px",
+        }
+    },
+    labels: {
+        education: {
+            scale: "0.2",
+            x: "143vw",
+            y: "395vw",
+            z: "0",
+        },
+        health: {
+            scale: "0.13",
+            x: "90vw",
+            y: "440vw",
+            z: "-1px",
+        },
+        environment: {
+            scale: "0.13",
+            x: "-130vw",
+            y: "490vw",
+            z: "-1px",
+        },
+        inequality: {
+            scale: "0.13",
+            x: "-200vw",
+            y: "390vw",
+            z: "-1px",
+        }
+    },
     foreground_buildings: {
         scale: "1",
         x: "0",
@@ -503,7 +555,71 @@ export default function Home() {
                                                 ${parallaxParameters.upper_highway.z})`,
                     }}>
                     <img className="absolute w-full" src="/upper_highway.svg"></img>
+
+                    {/* Education Target */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                            transform: `scale(${parallaxParameters.targets.education.scale})
+                                        translate3d(${parallaxParameters.targets.education.x},
+                                                    ${parallaxParameters.targets.education.y},
+                                                    ${parallaxParameters.targets.education.z})`,
+                        }}
+                        >
+                        <img className="absolute w-full pulse" src="/target.svg"></img>
+                    </div>
+                     {/* Education Label */}
+                     <div
+                        className="relative cursor-pointer"
+                        style={{
+                            transform: `scale(${parallaxParameters.labels.education.scale})
+                                        translate3d(${parallaxParameters.labels.education.x},
+                                                    ${parallaxParameters.labels.education.y},
+                                                    ${parallaxParameters.labels.education.z})`,
+                        }}
+                        >
+                        <img className="absolute w-full" src="/education_label.svg"></img>
+                    </div>
+                    
+                    {/* Health Target */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                        transform: `scale(${parallaxParameters.targets.health.scale})
+                                    translate3d(${parallaxParameters.targets.health.x},
+                                                ${parallaxParameters.targets.health.y},
+                                                ${parallaxParameters.targets.health.z})`,
+                    }}>
+                    
+                        <img className="absolute w-full pulse" src="/target.svg"></img>
+                    </div>
+                    {/* Inequality Target */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                        transform: `scale(${parallaxParameters.targets.inequality.scale})
+                                    translate3d(${parallaxParameters.targets.inequality.x},
+                                                ${parallaxParameters.targets.inequality.y},
+                                                ${parallaxParameters.targets.inequality.z})`,
+                    }}>
+                    
+                        <img className="absolute w-full pulse" src="/target.svg"></img>
+                    </div>
+                    {/* Environment Target */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                        transform: `scale(${parallaxParameters.targets.environment.scale})
+                                    translate3d(${parallaxParameters.targets.environment.x},
+                                                ${parallaxParameters.targets.environment.y},
+                                                ${parallaxParameters.targets.environment.z})`,
+                    }}>
+                    
+                        <img className="absolute w-full pulse" src="/target.svg"></img>
+                    </div>
                 </div>
+
+    
 
                 <div
                     className="absolute w-full max-w-none"

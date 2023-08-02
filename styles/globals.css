@@ -12,3 +12,23 @@
 .font-manrope {
     font-family: "Manrope", sans-serif;
 }
+
+@keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.08);
+    }
+  }
+  
+  .pulse {
+    animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  
+  
+  
+  
+  
+  
+  
