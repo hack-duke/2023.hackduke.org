@@ -131,6 +131,58 @@ const parallaxParameters = {
         y: "170vw",
         z: "-1.5px",
     },
+    targets: {
+        education: {
+            scale: "0.12",
+            x: "295vw",
+            y: "640vw",
+            z: "0",
+        },
+        health: {
+            scale: "0.12",
+            x: "110vw",
+            y: "470vw",
+            z: "0",
+        },
+        environment: {
+            scale: "0.12",
+            x: "-160vw",
+            y: "530vw",
+            z: "0",
+        },
+        inequality: {
+            scale: "0.12",
+            x: "-236vw",
+            y: "426vw",
+            z: "0",
+        }
+    },
+    labels: {
+        education: {
+            scale: "0.25",
+            x: "120vw",
+            y: "330vw",
+            z: "-1.2px",
+        },
+        health: {
+            scale: "0.19",
+            x: "118vw",
+            y: "276vw",
+            z: "-1.2px",
+        },
+        environment: {
+            scale: "0.28",
+            x: "-107vw",
+            y: "247vw",
+            z: "-1.2px",
+        },
+        inequality: {
+            scale: "0.23",
+            x: "-120vw",
+            y: "210vw",
+            z: "-1.2px",
+        }
+    },
     foreground_buildings: {
         scale: "1",
         x: "0",
@@ -218,6 +270,7 @@ function Speaker({ speaker, currentSpeakerIndex, totalSpeakers }) {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
     return (
         <>
             <div
@@ -304,6 +357,16 @@ export default function Home() {
 
         return () => clearInterval(intervalId);
     }, [currentFAQIndex]);
+
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
 
     const speakers = [
         {
@@ -503,7 +566,116 @@ export default function Home() {
                                                 ${parallaxParameters.upper_highway.z})`,
                     }}>
                     <img className="absolute w-full" src="/upper_highway.svg"></img>
+
+                    <div className="target-parent">
+                    {/* Education Target */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                            transform: `scale(${parallaxParameters.targets.education.scale})
+                                        translate3d(${parallaxParameters.targets.education.x},
+                                                    ${parallaxParameters.targets.education.y},
+                                                    ${parallaxParameters.targets.education.z})`,
+                        }}
+                        >
+                        <img className="absolute w-full rotate-on-hover" src="/target.svg"></img>
+                    </div>
+                     {/* Education Label */}
+                     <div
+                        className="relative cursor-pointer"
+                        style={{
+                            transform: `scale(${parallaxParameters.labels.education.scale})
+                                        translate3d(${parallaxParameters.labels.education.x},
+                                                    ${parallaxParameters.labels.education.y},
+                                                    ${parallaxParameters.labels.education.z})`,
+                        }}
+                        >
+                        <img className="absolute w-full" src="/education_label.svg"></img>
+                    </div>
+                    </div>
+
+                    <div className="target-parent">
+                    {/* Health Target */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                        transform: `scale(${parallaxParameters.targets.health.scale})
+                                    translate3d(${parallaxParameters.targets.health.x},
+                                                ${parallaxParameters.targets.health.y},
+                                                ${parallaxParameters.targets.health.z})`,
+                    }}>
+                    
+                        <img className="absolute w-full rotate-on-hover" src="/target.svg"></img>
+                    </div>
+                    {/* Health Label */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                            transform: `scale(${parallaxParameters.labels.health.scale})
+                                        translate3d(${parallaxParameters.labels.health.x},
+                                                    ${parallaxParameters.labels.health.y},
+                                                    ${parallaxParameters.labels.health.z})`,
+                        }}
+                        >
+                        <img className="absolute w-full" src="/health_label.svg"></img>
+                    </div>
+                    </div>
+                    
+                    <div className="target-parent">
+                    {/* Inequality Target */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                        transform: `scale(${parallaxParameters.targets.inequality.scale})
+                                    translate3d(${parallaxParameters.targets.inequality.x},
+                                                ${parallaxParameters.targets.inequality.y},
+                                                ${parallaxParameters.targets.inequality.z})`,
+                    }}>
+                    
+                        <img className="absolute w-full rotate-on-hover" src="/target.svg"></img>
+                    </div>
+                    {/* Inequality Label */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                            transform: `scale(${parallaxParameters.labels.inequality.scale})
+                                        translate3d(${parallaxParameters.labels.inequality.x},
+                                                    ${parallaxParameters.labels.inequality.y},
+                                                    ${parallaxParameters.labels.inequality.z})`,
+                        }}
+                        >
+                        <img className="absolute w-full" src="/inequality_label.svg"></img>
+                    </div>
+                    </div>
+
+                    <div className="target-parent">
+                    {/* Environment Target */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                        transform: `scale(${parallaxParameters.targets.environment.scale})
+                                    translate3d(${parallaxParameters.targets.environment.x},
+                                                ${parallaxParameters.targets.environment.y},
+                                                ${parallaxParameters.targets.environment.z})`,
+                    }}>
+                    
+                        <img className="absolute w-full rotate-on-hover" src="/target.svg"></img>
+                    </div>
+                    {/* Environment Label */}
+                    <div
+                        className="relative cursor-pointer"
+                        style={{
+                            transform: `scale(${parallaxParameters.labels.environment.scale})
+                                        translate3d(${parallaxParameters.labels.environment.x},
+                                                    ${parallaxParameters.labels.environment.y},
+                                                    ${parallaxParameters.labels.environment.z})`,
+                        }}
+                        >
+                        <img className="absolute w-full" src="/environment_label.svg"></img>
+                    </div>
                 </div>
+                </div>
+    
 
                 <div
                     className="absolute w-full max-w-none"
