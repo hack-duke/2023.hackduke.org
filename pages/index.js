@@ -183,6 +183,18 @@ const parallaxParameters = {
             z: "-1.2px",
         }
     },
+    modal: {
+        scale: "0.96",
+        x: "0",
+        y: "50vw",
+        z: "-0.5px",
+        close: {
+            scale: "0.07",
+            x: "500vw",
+            y: "120vw",
+            z: "0",
+        }
+    },
     foreground_buildings: {
         scale: "1",
         x: "0",
@@ -253,6 +265,34 @@ const parallaxParameters = {
         }
     },
 };
+
+const Modal = ({ onClose, svgSrc }) => {
+    return (
+        <div
+            className="absolute w-full max-w-none"
+                    style={{
+                        transform: `scale(${parallaxParameters.modal.scale})
+                                    translate3d(${parallaxParameters.modal.x},
+                                                ${parallaxParameters.modal.y},
+                                                ${parallaxParameters.modal.z})`,
+                    }}>
+                    <img className="absolute w-full" src={svgSrc}></img>
+                {/* Close button */}
+                <div
+                        className="relative cursor-pointer"
+                        style={{
+                            transform: `scale(${parallaxParameters.modal.close.scale})
+                                        translate3d(${parallaxParameters.modal.close.x},
+                                                    ${parallaxParameters.modal.close.y},
+                                                    ${parallaxParameters.modal.close.z})`,
+                        }}
+                        onClick={onClose}
+                        >
+                        <img className="absolute w-full" src="/modal_close.svg"></img>
+                    </div>
+                </div>
+    );
+  };
 
 function Speaker({ speaker, currentSpeakerIndex, totalSpeakers }) {
     const [windowWidth, setWindowWidth] = useState(0);
@@ -358,15 +398,18 @@ export default function Home() {
         return () => clearInterval(intervalId);
     }, [currentFAQIndex]);
 
-    const [isHovered, setIsHovered] = useState(false);
+    const [showInequality, setShowInequality] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [modalSvgSrc, setModalSvgSrc] = useState('');
 
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
+    const openModal = (svgSrc) => {
+        setModalSvgSrc(svgSrc);
+        setShowModal(true);
+      };
+    
+      const closeModal = () => {
+        setShowModal(false);
+      };
 
     const speakers = [
         {
@@ -566,7 +609,8 @@ export default function Home() {
                                                 ${parallaxParameters.upper_highway.z})`,
                     }}>
                     <img className="absolute w-full" src="/upper_highway.svg"></img>
-
+                    {!showModal && (
+                    <div>
                     <div className="target-parent">
                     {/* Education Target */}
                     <div
@@ -577,6 +621,7 @@ export default function Home() {
                                                     ${parallaxParameters.targets.education.y},
                                                     ${parallaxParameters.targets.education.z})`,
                         }}
+                        onClick={() => openModal('/education_modal.svg')}
                         >
                         <img className="absolute w-full rotate-on-hover" src="/target.svg"></img>
                     </div>
@@ -593,7 +638,9 @@ export default function Home() {
                         <img className="absolute w-full" src="/education_label.svg"></img>
                     </div>
                     </div>
+              
 
+           
                     <div className="target-parent">
                     {/* Health Target */}
                     <div
@@ -602,8 +649,10 @@ export default function Home() {
                         transform: `scale(${parallaxParameters.targets.health.scale})
                                     translate3d(${parallaxParameters.targets.health.x},
                                                 ${parallaxParameters.targets.health.y},
-                                                ${parallaxParameters.targets.health.z})`,
-                    }}>
+                                                ${parallaxParameters.targets.health.z})`,                             
+                        }}
+                        onClick={() => openModal('/health_modal.svg')}
+                    >
                     
                         <img className="absolute w-full rotate-on-hover" src="/target.svg"></img>
                     </div>
@@ -620,7 +669,9 @@ export default function Home() {
                         <img className="absolute w-full" src="/health_label.svg"></img>
                     </div>
                     </div>
-                    
+               
+                   
+                
                     <div className="target-parent">
                     {/* Inequality Target */}
                     <div
@@ -630,7 +681,9 @@ export default function Home() {
                                     translate3d(${parallaxParameters.targets.inequality.x},
                                                 ${parallaxParameters.targets.inequality.y},
                                                 ${parallaxParameters.targets.inequality.z})`,
-                    }}>
+                        }}
+                        onClick={() => openModal('/inequality_modal.svg')}
+                    >
                     
                         <img className="absolute w-full rotate-on-hover" src="/target.svg"></img>
                     </div>
@@ -646,8 +699,9 @@ export default function Home() {
                         >
                         <img className="absolute w-full" src="/inequality_label.svg"></img>
                     </div>
-                    </div>
-
+                    </div> 
+           
+                    
                     <div className="target-parent">
                     {/* Environment Target */}
                     <div
@@ -657,7 +711,9 @@ export default function Home() {
                                     translate3d(${parallaxParameters.targets.environment.x},
                                                 ${parallaxParameters.targets.environment.y},
                                                 ${parallaxParameters.targets.environment.z})`,
-                    }}>
+                        }}
+                        onClick={() => openModal('/environment_modal.svg')}
+                    >
                     
                         <img className="absolute w-full rotate-on-hover" src="/target.svg"></img>
                     </div>
@@ -673,7 +729,12 @@ export default function Home() {
                         >
                         <img className="absolute w-full" src="/environment_label.svg"></img>
                     </div>
-                </div>
+                    </div>
+                    </div>
+                    )}
+                
+                {/* Show the modal if showModal is true */}
+                {showModal && <Modal onClose={closeModal} svgSrc={modalSvgSrc} />}
                 </div>
     
 
