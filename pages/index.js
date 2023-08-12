@@ -138,6 +138,70 @@ const parallaxParameters = {
         y: "170vw",
         z: "-1.5px",
     },
+    targets: {
+        education: {
+            scale: "0.12",
+            x: "295vw",
+            y: "640vw",
+            z: "0",
+        },
+        health: {
+            scale: "0.12",
+            x: "110vw",
+            y: "470vw",
+            z: "0",
+        },
+        environment: {
+            scale: "0.12",
+            x: "-160vw",
+            y: "530vw",
+            z: "0",
+        },
+        inequality: {
+            scale: "0.12",
+            x: "-236vw",
+            y: "426vw",
+            z: "0",
+        },
+    },
+    labels: {
+        education: {
+            scale: "0.25",
+            x: "120vw",
+            y: "330vw",
+            z: "-1.2px",
+        },
+        health: {
+            scale: "0.19",
+            x: "118vw",
+            y: "276vw",
+            z: "-1.2px",
+        },
+        environment: {
+            scale: "0.28",
+            x: "-107vw",
+            y: "247vw",
+            z: "-1.2px",
+        },
+        inequality: {
+            scale: "0.23",
+            x: "-120vw",
+            y: "210vw",
+            z: "-1.2px",
+        },
+    },
+    modal: {
+        scale: "0.7",
+        x: "0",
+        y: "-5rem",
+        z: "-0.5px",
+        close: {
+            scale: "0.07",
+            x: "500vw",
+            y: "120vw",
+            z: "0",
+        },
+    },
     foreground_buildings: {
         scale: "1",
         x: "0",
@@ -145,59 +209,59 @@ const parallaxParameters = {
         z: "0",
         speaker_billboard: {
             x: "23.5%",
-            y: "21.2%",
+            y: "22%",
             w: "83.5%",
             h: "53%",
             skewY: "0",
-            name: {
-                x: "12%",
-                y: "-920%",
-                w: "70%",
-                fontScale: "7vw",
-                skewY: "-11deg",
-            },
             title: {
-                x: "6.7vw",
-                y: "-94vw",
-                w: "34vw",
+                x: "1vw",
+                y: "-72vw",
+                w: "43vw",
                 h: "18vw",
-                fontScale: "3.0vw",
+                fontScale: "4.4vw",
                 skewY: "-11deg",
             },
             talk: {
-                x: "6.7vw",
-                y: "-92vw",
-                w: "32vw",
+                x: "6.6vw",
+                y: "-78vw",
+                w: "37vw",
                 h: "11vw",
-                fontScale: "3.5vw",
+                fontScale: "3vw",
                 skewY: "-11deg",
             },
             pic: {
-                x: "126%",
-                y: "-163%",
-                h: "40%",
-                w: "39%",
+                x: "159%",
+                y: "-178%",
+                h: "36%",
+                w: "35%",
+                skewY: "-11deg",
+            },
+            progress: {
+                x: "30vw",
+                y: "-45vw",
+                h: "36%",
+                w: "35%",
                 skewY: "-11deg",
             },
             right_arrow: {
-                x: "73vw",
-                y: "-94.5vw",
-                h: "5%",
-                w: "5%",
+                x: "71vw",
+                y: "-83.5vw",
+                h: "8%",
+                w: "8%",
                 skewY: "-5deg",
             },
             left_arrow: {
                 x: "6vw",
-                y: "-84vw",
-                h: "5.1%",
-                w: "5.1%",
+                y: "-76vw",
+                h: "8.3%",
+                w: "8.3%",
                 skewY: "-4deg",
             },
         },
         schedule: {
             text: {
                 x: "27vw",
-                y: "-40vw",
+                y: "-27vw",
                 z: "0",
                 w: "69vw",
                 h: "90vw",
@@ -209,7 +273,36 @@ const parallaxParameters = {
     },
 };
 
-function Speaker({ speaker }) {
+const Modal = ({ onClose, svgSrc }) => {
+    return (
+        <div className="fixed z-[9] flex h-[100vh] w-[100vw] content-center bg-red-600 bg-opacity-10">
+            <div
+                className="w-full"
+                style={{
+                    transform: `scale(${parallaxParameters.modal.scale})
+                                    translate3d(${parallaxParameters.modal.x},
+                                                ${parallaxParameters.modal.y},
+                                                ${parallaxParameters.modal.z})`,
+                }}>
+                <img className="absolute w-full" src={svgSrc}></img>
+                {/* Close button */}
+                <div
+                    className="relative cursor-pointer"
+                    style={{
+                        transform: `scale(${parallaxParameters.modal.close.scale})
+                                        translate3d(${parallaxParameters.modal.close.x},
+                                                    ${parallaxParameters.modal.close.y},
+                                                    ${parallaxParameters.modal.close.z})`,
+                    }}
+                    onClick={onClose}>
+                    <img className="absolute w-full" src="/modal_close.svg"></img>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+function Speaker({ speaker, currentSpeakerIndex, totalSpeakers }) {
     const [windowWidth, setWindowWidth] = useState(0);
 
     useEffect(() => {
@@ -225,6 +318,7 @@ function Speaker({ speaker }) {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
+
     return (
         <>
             <div
@@ -238,17 +332,27 @@ function Speaker({ speaker }) {
                 <img src={speaker.pic} alt={speaker.name} className="h-full w-full" />
             </div>
             <div
-                className="font-semibold text-[#4A181D]"
+                className="flex items-center justify-center"
                 style={{
-                    transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.name.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.name.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1100px)/100))
-                                        skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.name.skewY})`,
-                    fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.name.fontScale}`,
-                    width: `${parallaxParameters.foreground_buildings.speaker_billboard.name.w}`,
+                    transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.progress.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.progress.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1100px)/100))
+                                        skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.progress.skewY})`,
+                    height: `${parallaxParameters.foreground_buildings.speaker_billboard.progress.h}`,
+                    width: `${parallaxParameters.foreground_buildings.speaker_billboard.progress.w}`,
                 }}>
-                {speaker.name}
+                {Array.from({ length: totalSpeakers }).map((_, i) => (
+                    <div
+                        key={i}
+                        className={`mx-2 h-2.5 w-2.5 rounded-full ${
+                            i === currentSpeakerIndex ? "bg-[#A65E63]" : "bg-white"
+                        }
+                            sm:mx-2 sm:h-2 sm:w-2
+                            md:mx-3 md:h-3 md:w-3
+                            lg:mx-4 lg:h-4 lg:w-4`}></div>
+                ))}
             </div>
+
             <div
-                className="flex items-center"
+                className="text-right font-semibold text-white"
                 style={{
                     transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.title.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.title.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1200px)/100))
                                         skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.title.skewY})`,
@@ -256,10 +360,10 @@ function Speaker({ speaker }) {
                     fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.title.fontScale}`,
                     width: `${parallaxParameters.foreground_buildings.speaker_billboard.title.w}`,
                 }}>
-                <p className=" font-semibold text-[#A5706F] ">{speaker.title}</p>
+                {speaker.name}
             </div>
             <div
-                className="font-semibold text-[#4A181D]"
+                className="text-right font-semibold text-[#A65E63]"
                 style={{
                     transform: `translate(${parallaxParameters.foreground_buildings.speaker_billboard.talk.x}, calc(${parallaxParameters.foreground_buildings.speaker_billboard.talk.y} + (100vw - 1200px)/100 - (${windowWidth}px - 1200px)/100))
                                         skew(0, ${parallaxParameters.foreground_buildings.speaker_billboard.talk.skewY})`,
@@ -267,7 +371,7 @@ function Speaker({ speaker }) {
                     fontSize: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.fontScale}`,
                     width: `${parallaxParameters.foreground_buildings.speaker_billboard.talk.w}`,
                 }}>
-                {speaker.talk}
+                {speaker.title}
             </div>
         </>
     );
@@ -302,30 +406,49 @@ export default function Home() {
         return () => clearInterval(intervalId);
     }, [currentFAQIndex]);
 
+    const [showInequality, setShowInequality] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [modalSvgSrc, setModalSvgSrc] = useState("");
+
+    const openModal = (svgSrc) => {
+        setModalSvgSrc(svgSrc);
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
     const speakers = [
         {
-            name: "Yunha Kim",
+            name: "YUNHA KIM",
             pic: "/speakers/yunha.jpeg",
             title: "Founder & CEO @ Sleep Reset",
             talk: "Opening Ceremony Speaker",
         },
         {
-            name: "Sherard Griffin",
+            name: "SHERARD GRIFFIN",
             pic: "/speakers/sherard.jpeg",
             title: "Sr. Director of Engineering, AI services @ Red Hat",
             talk: "Closing Ceremony Speaker",
         },
         {
-            name: "Alfredo Deza",
+            name: "ALFREDO DEZA",
             pic: "/speakers/alfredo.jpeg",
             title: "Principal Cloud Advocate @ Microsoft",
             talk: "Workshop: Github Copilot",
         },
         {
-            name: "Sanjay Kamlani",
+            name: "SANJAY KAMLANI",
             pic: "/speakers/sanjay.jpeg",
             title: "Founder & CEO @ Maker5",
             talk: "Saturday Speaker: Startup Talk",
+        },
+        {
+            name: "Justin Klein",
+            pic: "/speakers/justin.jpg",
+            title: "Managing Partner @ Vensana Capital",
+            talk: "Saturday Speaker: Innovation in Healthcare",
         },
     ];
 
@@ -345,7 +468,7 @@ export default function Home() {
     ];
 
     return (
-        <div className="">
+        <>
             <div className="fixed right-[50px] z-10 w-[10%] min-w-[60px] hover:cursor-pointer">
                 <a
                     className=""
@@ -358,6 +481,7 @@ export default function Home() {
                     />
                 </a>
             </div>
+            {showModal && <Modal onClose={closeModal} svgSrc={modalSvgSrc} />}
             <div className="h-screen w-screen overflow-y-auto overflow-x-hidden" style={{ perspective: "5px" }}>
                 {/* Background */}
                 <div
@@ -485,40 +609,6 @@ export default function Home() {
                             {currentFAQIndex + 1} / {faqs.length}
                         </p>
                     </div>
-                    {/* <div
-                        className="cursor-pointer z-[50]"
-                        style={{
-                            transform: `translate(${parallaxParameters.billboard.text.right_arrow.x}, ${parallaxParameters.billboard.text.right_arrow.y})
-                                              skew(0, ${parallaxParameters.billboard.text.right_arrow.skewY})`,
-                            height: `${parallaxParameters.billboard.text.right_arrow.h}`,
-                            width: `${parallaxParameters.billboard.text.right_arrow.w}`,
-                        }}>
-                        <img
-                            src="/speakers/right_arrow.svg"
-                            alt="right arrow"
-                            className="w-full h-full"
-                            onClick={() => setCurrentFAQIndex((currentFAQIndex + 1) % faqs.length)}
-                        />
-                    </div>
-                    <div
-                        className="cursor-pointer z-[20]"
-                        style={{
-                            transform: `translate(${parallaxParameters.billboard.text.left_arrow.x}, ${parallaxParameters.billboard.text.left_arrow.y})
-                                              skew(0, ${parallaxParameters.billboard.text.left_arrow.skewY})`,
-                            height: `${parallaxParameters.billboard.text.left_arrow.h}`,
-                            width: `${parallaxParameters.billboard.text.left_arrow.w}`,
-                        }}>
-                        <img
-                            src="/speakers/left_arrow.svg"
-                            alt="left arrow"
-                            className="w-full h-full"
-                            onClick={() =>
-                                setCurrentFAQIndex(
-                                    (currentFAQIndex - 1 + faqs.length) % faqs.length
-                                )
-                            }
-                        />
-                    </div> */}
                 </div>
 
                 <div
@@ -541,6 +631,114 @@ export default function Home() {
                                                 ${parallaxParameters.upper_highway.z})`,
                     }}>
                     <img className="absolute w-full" src="/upper_highway.svg"></img>
+                    {!showModal && (
+                        <div>
+                            <div className="target-parent" onClick={() => openModal("/education_modal.svg")}>
+                                {/* Education Target */}
+                                <div
+                                    className="relative cursor-pointer"
+                                    style={{
+                                        transform: `scale(${parallaxParameters.targets.education.scale})
+                                        translate3d(${parallaxParameters.targets.education.x},
+                                                    ${parallaxParameters.targets.education.y},
+                                                    ${parallaxParameters.targets.education.z})`,
+                                    }}>
+                                    <img className="rotate-on-hover absolute w-full" src="/education_target.svg"></img>
+                                </div>
+                                {/* Education Label */}
+                                <div
+                                    className="relative cursor-pointer"
+                                    style={{
+                                        transform: `scale(${parallaxParameters.labels.education.scale})
+                                        translate3d(${parallaxParameters.labels.education.x},
+                                                    ${parallaxParameters.labels.education.y},
+                                                    ${parallaxParameters.labels.education.z})`,
+                                    }}>
+                                    <img className="absolute w-full" src="/education_button.svg"></img>
+                                </div>
+                            </div>
+
+                            <div className="target-parent" onClick={() => openModal("/health_modal.svg")} d>
+                                {/* Health Target */}
+                                <div
+                                    className="relative cursor-pointer"
+                                    style={{
+                                        transform: `scale(${parallaxParameters.targets.health.scale})
+                                    translate3d(${parallaxParameters.targets.health.x},
+                                                ${parallaxParameters.targets.health.y},
+                                                ${parallaxParameters.targets.health.z})`,
+                                    }}>
+                                    <img className="rotate-on-hover absolute w-full" src="/health_target.svg"></img>
+                                </div>
+                                {/* Health Label */}
+                                <div
+                                    className="relative cursor-pointer"
+                                    style={{
+                                        transform: `scale(${parallaxParameters.labels.health.scale})
+                                        translate3d(${parallaxParameters.labels.health.x},
+                                                    ${parallaxParameters.labels.health.y},
+                                                    ${parallaxParameters.labels.health.z})`,
+                                    }}>
+                                    <img className="absolute w-full" src="/health_button.svg"></img>
+                                </div>
+                            </div>
+
+                            <div className="target-parent" onClick={() => openModal("/inequality_modal.svg")}>
+                                {/* Inequality Target */}
+                                <div
+                                    className="relative cursor-pointer"
+                                    style={{
+                                        transform: `scale(${parallaxParameters.targets.inequality.scale})
+                                    translate3d(${parallaxParameters.targets.inequality.x},
+                                                ${parallaxParameters.targets.inequality.y},
+                                                ${parallaxParameters.targets.inequality.z})`,
+                                    }}>
+                                    <img className="rotate-on-hover absolute w-full" src="/inequality_target.svg"></img>
+                                </div>
+                                {/* Inequality Label */}
+                                <div
+                                    className="relative cursor-pointer"
+                                    style={{
+                                        transform: `scale(${parallaxParameters.labels.inequality.scale})
+                                        translate3d(${parallaxParameters.labels.inequality.x},
+                                                    ${parallaxParameters.labels.inequality.y},
+                                                    ${parallaxParameters.labels.inequality.z})`,
+                                    }}>
+                                    <img className="absolute w-full" src="/inequality_button.svg"></img>
+                                </div>
+                            </div>
+
+                            <div className="target-parent" onClick={() => openModal("/environment_modal.svg")}>
+                                {/* Environment Target */}
+                                <div
+                                    className="relative cursor-pointer"
+                                    style={{
+                                        transform: `scale(${parallaxParameters.targets.environment.scale})
+                                    translate3d(${parallaxParameters.targets.environment.x},
+                                                ${parallaxParameters.targets.environment.y},
+                                                ${parallaxParameters.targets.environment.z})`,
+                                    }}>
+                                    <img
+                                        className="rotate-on-hover absolute w-full"
+                                        src="/environment_target.svg"></img>
+                                </div>
+                                {/* Environment Label */}
+                                <div
+                                    className="relative cursor-pointer"
+                                    style={{
+                                        transform: `scale(${parallaxParameters.labels.environment.scale})
+                                        translate3d(${parallaxParameters.labels.environment.x},
+                                                    ${parallaxParameters.labels.environment.y},
+                                                    ${parallaxParameters.labels.environment.z})`,
+                                    }}>
+                                    <img className="absolute w-full" src="/environment_button.svg"></img>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Show the modal if showModal is true */}
+                    {/* {showModal && <Modal onClose={closeModal} svgSrc={modalSvgSrc} />} */}
                 </div>
 
                 <div
@@ -562,7 +760,10 @@ export default function Home() {
                             width: `${parallaxParameters.foreground_buildings.speaker_billboard.w}`,
                         }}>
                         <img className="relative w-full" src="/speakers/speakerbg.svg"></img>
-                        <Speaker speaker={speakers[currentSpeakerIndex]}></Speaker>
+                        <Speaker
+                            speaker={speakers[currentSpeakerIndex]}
+                            currentSpeakerIndex={currentSpeakerIndex}
+                            totalSpeakers={speakers.length}></Speaker>
                         <div
                             className="cursor-pointer"
                             style={{
@@ -661,6 +862,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
