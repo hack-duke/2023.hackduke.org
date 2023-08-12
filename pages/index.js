@@ -30,20 +30,20 @@ function AboutUsHeader(props) {
                     width: `${props.width}`,
                 }}>
                 <div
-                    className="absolute top-[46%] h-[26.5%] w-[66.7%] overflow-hidden lg:top-[38%]"
+                    className="absolute top-[46%] h-[26.5%] w-[66.6%] overflow-hidden lg:top-[38%]"
                     style={{ transform: `skew(0, -11.2deg)` }}>
                     <div className="animate-textLoop">
                         ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US ABOUT US
                     </div>
                 </div>
                 <div
-                    className="absolute right-0 top-[32%] h-[26.5%] w-[33.4%] overflow-hidden lg:top-[24%]"
+                    className="absolute right-0 top-[33%] h-[26.5%] w-[33.4%] overflow-hidden lg:top-[25%]"
                     style={{
                         transform: `skew(0, 13.7deg)`,
                     }}>
                     <div
                         style={{
-                            transform: `translateX(calc(-24.9% - (100vw - 1200px)/140))`,
+                            transform: `translateX(calc(-16% - (100vw - 1200px)/140))`,
                         }}>
                         <div className="animate-textLoop">ABOUT US ABOUT US ABOUT US ABOUT</div>
                     </div>
@@ -65,9 +65,17 @@ const parallaxParameters = {
         x: "0",
         y: "-10vw",
         z: "-8px",
+        register: {
+            x: "10vw",
+            y: "36vw",
+            // w: "300vw",
+            fontScale: "2.5vw",
+            skewY: "0deg",
+            w: "50vw",
+        },
         text: {
             x: "60%",
-            y: "325%",
+            y: "335%",
             w: "40%",
             fontScale: "2.5vw",
             skewY: "-11deg",
@@ -78,10 +86,10 @@ const parallaxParameters = {
             w: "19%",
         },
         scrollingHeader: {
-            x: "3.9vw",
-            y: "65vw",
+            x: "6vw",
+            y: "67.5vw",
             h: "17vw",
-            w: "92.9%",
+            w: "88.5%",
         },
     },
     billboard: {
@@ -509,10 +517,24 @@ export default function Home() {
                     <img className="absolute w-full" src="/main_building.svg"></img>
 
                     {/* Date Sign */}
-                    <DateSign
+                    {/* <DateSign
                         x={parallaxParameters.main_building.dateSign.x}
                         y={parallaxParameters.main_building.dateSign.y}
-                        width={parallaxParameters.main_building.dateSign.w}></DateSign>
+                        width={parallaxParameters.main_building.dateSign.w}></DateSign> */}
+
+                    <div
+                        className="absolute"
+                        style={{
+                            transform: `translate(${parallaxParameters.main_building.register.x}, calc(${parallaxParameters.main_building.register.y} + (100vw - 1200px)/100))
+                                          skew(0, ${parallaxParameters.main_building.register.skewY})`,
+                            fontSize: `${parallaxParameters.main_building.register.fontScale}`,
+                            width: `${parallaxParameters.main_building.register.w}`,
+                            // scale: `${parallaxParameters.main_building.register.scale}`,
+                        }}>
+                        <a target="_blank" href="https://forms.gle/cQrGHaULzoitipxZ6" rel="noopener noreferrer">
+                            <img src="/register_button.svg" className="w-full hover:cursor-pointer"></img>
+                        </a>
+                    </div>
 
                     {/* Main Text */}
                     <div
@@ -792,7 +814,7 @@ export default function Home() {
                             const [day, events] = entry;
 
                             return (
-                                <div>
+                                <div key={day}>
                                     <div
                                         style={{
                                             alignItems: "center",
