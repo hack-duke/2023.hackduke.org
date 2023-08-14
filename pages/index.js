@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Stars from "../components/Stars";
 
@@ -101,22 +101,8 @@ const parallaxParameters = {
             x: "13%",
             y: "70%",
             w: "75%",
-            fontScale: "4vw",
+            fontScale: "3vw",
             h: "40vw",
-            right_arrow: {
-                x: "85vw",
-                y: "2225%",
-                h: "5%",
-                w: "5%",
-                skewY: "10deg",
-            },
-            left_arrow: {
-                x: "5vw",
-                y: "2300%",
-                h: "5%",
-                w: "5%",
-                skewY: "10deg",
-            },
         },
         pagination: {
             x: "13%",
@@ -124,6 +110,21 @@ const parallaxParameters = {
             w: "75%",
             h: "100%",
             fontScale: "3vw",
+            right_arrow: {
+                x: "60vw",
+                y: "-5vw",
+                z: "1px",
+                h: "9%",
+                w: "9%",
+                skewY: "10deg",
+            },
+            left_arrow: {
+                x: "5vw",
+                y: "-9vw",
+                h: "9%",
+                w: "9%",
+                skewY: "10deg",
+            },
         },
     },
     lower_highway: {
@@ -378,7 +379,6 @@ function Speaker({ speaker, currentSpeakerIndex, totalSpeakers }) {
 }
 
 export default function Home() {
-    const router = useRouter();
     const [currentSpeakerIndex, setCurrentSpeakerIndex] = useState(0);
     const [currentFAQIndex, setCurrentFAQIndex] = useState(0);
     const [windowWidth, setWindowWidth] = useState(0);
@@ -397,16 +397,40 @@ export default function Home() {
         };
     }, []);
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setCurrentFAQIndex((currentFAQIndex + 1) % faqs.length);
-            console.log(currentFAQIndex);
+    const startInterval = () => {
+        return setInterval(() => {
+            setCurrentFAQIndex((prevIndex) => (prevIndex + 1) % faqs.length);
         }, 5000);
+    }
+    
+    const intervalRef = useRef(null);
 
-        return () => clearInterval(intervalId);
-    }, [currentFAQIndex]);
+    useEffect(() => {
+        intervalRef.current = startInterval();
+        return () => clearInterval(intervalRef.current);
+    }, []);
 
-    const [showInequality, setShowInequality] = useState(true);
+    const nextFAQ = () => {
+        if (currentFAQIndex < faqs.length - 1) {
+            setCurrentFAQIndex(currentFAQIndex + 1);
+        } else {
+            setCurrentFAQIndex(0);
+        }
+        clearInterval(intervalRef.current);
+        intervalRef.current = startInterval();
+    }
+
+    const previousFAQ = () => {
+        if (currentFAQIndex > 0) {
+            setCurrentFAQIndex(currentFAQIndex - 1);
+        } else {
+            setCurrentFAQIndex(faqs.length - 1);
+        }
+        clearInterval(intervalRef.current);
+        intervalRef.current = startInterval();
+    }
+    
+
     const [showModal, setShowModal] = useState(false);
     const [modalSvgSrc, setModalSvgSrc] = useState("");
 
@@ -454,18 +478,47 @@ export default function Home() {
 
     const faqs = [
         {
+            question: "When is the application deadline?",
+            answer: "Applications will close on September 4th at 11:59 PM EST, and all decisions will be released by Wednesday, September 6th. We hope to see you all there, so make sure to apply!"
+        },
+        {
             question: "Who can I work with?",
-            answer: "Anyone! You are welcome to work alone, but we definitely recommend working with a team and get to know your fellow programmers from Duke and other schools!",
+            answer: "Anyone! You are welcome to work alone, but we definitely recommend working with a team and get to know your fellow programmers from Duke and other schools! Teams can have up to 4 students, no exceptions. The only request that we have is that you make a new friend and learn something new by talking to each other, our mentors, and our experts!"
+        },
+        {
+            question: "When? Where?",
+            answer: "Code for Good starts Friday, September 8 at 5:00 PM EST and ends Sunday, September 10 at 6:30 PM EST. It will be hosted on Duke University's West Campus, in and around Penn Pavilion. All links and info will be included in our hacker guide, which will be sent out before the event begins."
+        },
+        {
+            question: "What if I’m new to coding?",
+            answer: "We welcome everyone to apply, regardless of your background in tech! Even if you have limited coding or technical experience, we will have a beginner track as well as plenty of talks and workshops scheduled to introduce you to a plethora of different tools and technologies. Mentors will also be available throughout the weekend to help out if you ever get stuck or run out of ideas."
         },
         {
             question: "What can I make?",
-            answer: "We welcome all software and hardware hacks that align with our tracks. Our mission is to code for social good, so make sure to create a project that is impactful for the track you have chosen! ",
+            answer: "We welcome all software and hardware hacks that align with our tracks. Our mission is to code for social good, so make sure to create a project that is impactful for the track you have chosen! We will also have lab space and limited equipment available for hardware projects."
         },
         {
             question: "Who can participate?",
-            answer: "You can participate as long as you're a student (undergraduate or graduate) 18 years or older. If you are a new grad, we’d love to have you as well! We aim to be beginner-friendly, so, all are welcome!",
+            answer: "You can participate as long as you're a student (undergraduate or graduate) 18 years or older. If you are a new grad, we’d love to have you as well! We aim to be beginner-friendly, so, all are welcome!"
         },
+        {
+            question: "What should I bring?",
+            answer: "Bring your laptop, chargers, ethernet cables (or just use Wi-Fi), potential toiletries/sleeping bags, and a spirit to Code for Good!"
+        },
+        {
+            question: "How can I get involved or help?",
+            answer: "In you are interested in volunteering and helping out with the day-of logistics, please send us an email at hackers@hackduke.org. If you are interested in mentoring hackers with tech or track-specific knowledge, drop us an email at hackers@hackduke.org. To get involved with sponsorship opportunities, reach out to us at sponsorship@hackduke.org!"
+        },
+        {
+            question: "Will there be prizes?",
+            answer: "Yes! There will be grand prize and novice winners for each track. In addition, there will also be many company-sponsored prizes. These often come with the requirement that you incorporate certain technologies into your project. Please check the prizes page and devpost for specifics!"
+        },
+        {
+            question: "Still have questions?",
+            answer: "Email us at hackers@hackduke.org!"
+        }
     ];
+    
 
     return (
         <>
@@ -597,6 +650,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div
+                        className="relative"
                         style={{
                             width: `${parallaxParameters.billboard.pagination.w}`,
                             height: `${parallaxParameters.billboard.pagination.h}`,
@@ -605,15 +659,47 @@ export default function Home() {
                             fontSize: `${parallaxParameters.billboard.pagination.fontScale}`,
                             fontWeight: `bold`,
                         }}>
-                        <p>
+                        <p className="relative">
                             {currentFAQIndex + 1} / {faqs.length}
                         </p>
+                        <div
+                            className="cursor-pointer"
+                            style={{
+                                transform: `translate3d(${parallaxParameters.billboard.pagination.right_arrow.x},
+                                                ${parallaxParameters.billboard.pagination.right_arrow.y},
+                                                ${parallaxParameters.billboard.pagination.right_arrow.z})
+                                skew(0, ${parallaxParameters.billboard.pagination.right_arrow.skewY})`,
+                                height: `${parallaxParameters.billboard.pagination.right_arrow.h}`,
+                                width: `${parallaxParameters.billboard.pagination.right_arrow.w}`,
+                            }}>
+                            <img
+                                src="/speakers/right_arrow.svg"
+                                alt="right arrow"
+                                className="h-full w-full"
+                                onClick={nextFAQ}
+                            />
+                        </div>
+                        <div
+                            className="cursor-pointer"
+                            style={{
+                                transform: `translate(${parallaxParameters.billboard.pagination.left_arrow.x}, calc(${parallaxParameters.billboard.pagination.left_arrow.y} + (100vw - 700px)/100))
+                                skew(0, ${parallaxParameters.billboard.pagination.left_arrow.skewY})`,
+                                height: `${parallaxParameters.billboard.pagination.left_arrow.h}`,
+                                width: `${parallaxParameters.billboard.pagination.left_arrow.w}`,
+                            }}>
+                            <img
+                                src="/speakers/left_arrow.svg"
+                                alt="left arrow"
+                                className="w-full h-full"
+                                onClick={previousFAQ}
+                            />
+                        </div>
                     </div>
                 </div>
 
                 <div
                     className="absolute w-full max-w-none"
-                    style={{
+                    style={{pointerEvents: 'none',
                         transform: `scale(${parallaxParameters.lower_highway.scale})
                                     translate3d(${parallaxParameters.lower_highway.x},
                                                 ${parallaxParameters.lower_highway.y},
@@ -624,7 +710,7 @@ export default function Home() {
 
                 <div
                     className="absolute w-full max-w-none"
-                    style={{
+                    style={{pointerEvents: 'none', 
                         transform: `scale(${parallaxParameters.upper_highway.scale})
                                     translate3d(${parallaxParameters.upper_highway.x},
                                                 ${parallaxParameters.upper_highway.y},
