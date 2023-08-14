@@ -699,7 +699,7 @@ export default function Home() {
 
                 <div
                     className="absolute w-full max-w-none"
-                    style={{pointerEvents: 'none',
+                    style={{
                         transform: `scale(${parallaxParameters.lower_highway.scale})
                                     translate3d(${parallaxParameters.lower_highway.x},
                                                 ${parallaxParameters.lower_highway.y},
@@ -710,7 +710,7 @@ export default function Home() {
 
                 <div
                     className="absolute w-full max-w-none"
-                    style={{pointerEvents: 'none', 
+                    style={{
                         transform: `scale(${parallaxParameters.upper_highway.scale})
                                     translate3d(${parallaxParameters.upper_highway.x},
                                                 ${parallaxParameters.upper_highway.y},
