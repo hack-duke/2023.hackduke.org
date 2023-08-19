@@ -4,6 +4,8 @@ import Stars from "../components/Stars";
 
 const scheduleData = require("../public/schedule.json");
 
+const sponsorsData = require("../public/sponsors.json");
+
 function DateSign(props) {
     return (
         <>
@@ -269,6 +271,22 @@ const parallaxParameters = {
                 skewY: "-10deg",
                 titleFontScale: "4vw",
             },
+        },
+    },
+    sponsors: {
+        scale: "1",
+        x: "0",
+        y: "500vw",
+        z: "0",
+        sponsor_logos: {
+            x: "22vw",
+            y: "126vw",
+            z: "0",
+            w: "58vw",
+            h: "131vw",
+            fontScale: "1.7vw",
+            skewY: "0",
+            titleFontScale: "4vw",
         },
     },
 };
@@ -859,6 +877,75 @@ export default function Home() {
                                 </div>
                             );
                         })}
+                    </div>
+                </div>
+                <div
+                    className="absolute w-full max-w-none"
+                    style={{
+                        transform: `scale(${parallaxParameters.sponsors.scale})
+                                    translate3d(${parallaxParameters.sponsors.x},
+                                                ${parallaxParameters.sponsors.y},
+                                                ${parallaxParameters.sponsors.z})`,
+                    }}>
+                    <img className="absolute w-full" src="/sponsors.svg"></img>
+                    <div
+                        className="relative w-full max-w-none"
+                        style={{
+                            transform: `translate3d(${parallaxParameters.sponsors.sponsor_logos.x},
+                            ${parallaxParameters.sponsors.sponsor_logos.y},
+                            ${parallaxParameters.sponsors.sponsor_logos.z}) skew(0, ${parallaxParameters.sponsors.sponsor_logos.skewY})`,
+                            width: `${parallaxParameters.sponsors.sponsor_logos.w}`,
+                            height: `${parallaxParameters.sponsors.sponsor_logos.h}`,
+                        }}>
+                        <div className="flex flex-wrap justify-center">
+                            {sponsorsData.map((entry) => {
+                                const tier = entry.tier;
+                                const sponsors = entry.sponsors;
+
+                                return (
+                                    <div key={tier} className="flex flex-col justify-center">
+                                        <div
+                                            style={{
+                                                textAlign: "center",
+                                                fontSize: `${parallaxParameters.sponsors.sponsor_logos.titleFontScale}`,
+                                            }}>
+                                            <b>{tier}</b>
+                                            <hr
+                                                style={{
+                                                    borderColor: "black",
+                                                    marginRight: "1rem",
+                                                    marginLeft: "1rem",
+                                                    marginBottom: "1rem",
+                                                }}
+                                            />
+                                            {/* Sponsors */}
+                                            <div className="flex flex-wrap justify-center">
+                                                {sponsors.map((sponsor) => {
+                                                    const name = sponsor.name;
+                                                    const logo = sponsor.logo;
+                                                    const url = sponsor.url;
+
+                                                    return (
+                                                        <a
+                                                            key={name}
+                                                            className="flex flex-col items-center justify-center"
+                                                            style={{
+                                                                width: "50%",
+                                                                marginBottom: "1rem",
+                                                            }}
+                                                            href={url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer">
+                                                            <img src={logo} alt={name} className="w-full" />
+                                                        </a>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </div>
