@@ -928,7 +928,7 @@ export default function Home() {
                                                     return (
                                                         <a
                                                             key={name}
-                                                            className="flex flex-col items-center justify-center"
+                                                            className="flex flex-col items-center justify-center p-[2vw]"
                                                             style={{
                                                                 width: "50%",
                                                                 marginBottom: "1rem",
