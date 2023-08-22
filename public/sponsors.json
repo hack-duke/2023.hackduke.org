@@ -1,7 +1,33 @@
 [
     {
-        "tier": "Partners",
+        "tier": "Sponsors",
         "sponsors": [
+            {
+                "name": "SIG",
+                "url": "https://sig.com/",
+                "logo": "/sponsors/sig.png"
+            },
+            {
+                "name": "Accenture",
+                "url": "https://www.accenture.com/",
+                "logo": "/sponsors/accenture.png"
+            },
+            {
+                "name": "Nokia",
+                "url": "https://www.nokia.com/",
+                "logo": "/sponsors/nokia.png"
+            },
+            {
+                "name": "Duke I&E",
+                "url": "https://entrepreneurship.duke.edu/",
+                "logo": "/sponsors/i&e.gif"
+            },
+            {
+                "name": "Patient Safety Challenge",
+                "url": "https://www.patientsafetytech.com/",
+                "logo": "/sponsors/psc.png"
+            },
+
             {
                 "name": "StandOut Stickers",
                 "url": "http://hackp.ac/mlh-StandOutStickers-hackathons",
