@@ -38,7 +38,7 @@ const Stars = ({ children }) => {
   }, []);
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative"}}>
       {children}
       {circles.map((circle, index) => (
         <div
@@ -57,6 +57,7 @@ const Stars = ({ children }) => {
             animationDuration: `${circle.animationDuration}s`,
             animationIterationCount: "infinite",
             animationTimingFunction: "ease-out",
+            zIndex: 2
           }}
         />
       ))}

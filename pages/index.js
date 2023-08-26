@@ -540,6 +540,9 @@ export default function Home() {
 
     return (
         <>
+         {/* <div className="absolute top-[10rem] left-0 h-screen w-[125vw]" style={{overflow: "hidden", height:"100vh", zIndex: 2}}>
+                        <img src="/buildings-cropped.svg" className="" style={{maxHeight: "120vh", width: "100vw", objectFit: "cover", objectPosition: "0 0"}}/>
+        </div> */}
             <div className="fixed right-[50px] z-10 w-[10%] min-w-[60px] hover:cursor-pointer">
                 <a
                     className=""
@@ -553,7 +556,7 @@ export default function Home() {
                 </a>
             </div>
             {showModal && <Modal onClose={closeModal} svgSrc={modalSvgSrc} />}
-            <div className="h-screen w-screen overflow-y-auto overflow-x-hidden" style={{ perspective: "5px" }}>
+            <div className="h-screen w-screen overflow-y-auto overflow-x-hidden" style={{ perspective: "5px", zIndex: 4 }}>
                 {/* Background */}
                 <div
                     className="absolute w-full max-w-none"
@@ -564,14 +567,12 @@ export default function Home() {
                                                 ${parallaxParameters.background.z})`,
                     }}>
                     <Stars>
-                        <img className="fixed w-full" src="/backgroundnostars.svg"></img>
+                        <img className="fixed w-full" src="/backgroundnostars.svg" style={{zIndex: 1}}></img>
+                        <img className="fixed w-full" src="/buildings-cropped.svg" style={{zIndex: 3}}></img>
                     </Stars>
 
                     <div className="absolute top-[-8vh] left-[-10vw] h-screen w-[125vw] scale-[70%] lg:left-[5vw] lg:top-[5vh] lg:scale-[100%]">
                         <img src="/moon.svg" className="" />
-                    </div>
-                    <div className="absolute top-[10rem] left-0 h-screen w-[125vw]">
-                        <img src="/buildings.svg" className="" />
                     </div>
                     {/* <div className="absolute top-[30%] left-[40%] text-lg text-cyan-50"></div> */}
                 </div>
