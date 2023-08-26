@@ -1,68 +1,140 @@
 {
     "Friday": [
         {
+            "start_time": "4:00 PM",
+            "end_time": "5:00 PM",
+            "title": "Check-In",
+            "location": "Penn"
+        },
+        {
             "start_time": "5:00 PM",
-            "end_time": "7:00 PM",
-            "title": "Check-in",
-            "location": "CIEMAS Lobby"
+            "end_time": "6:00 PM",
+            "title": "Opening Ceremony (Yunha Kim)",
+            "location": "Penn"
+        },
+        {
+            "start_time": "6:30 PM",
+            "end_time": "8:00 PM",
+            "title": "Team Formation Mixer + Dinner",
+            "location": "Penn"
+        },
+        {
+            "start_time": "8:30 PM",
+            "end_time": "9:30 PM",
+            "title": "Patient Safety",
+            "location": "Garden"
         },
         {
             "start_time": "8:00 PM",
-            "end_time": "8:30 PM",
-            "title": "Hardware Distribution",
-            "location": "Fitzpatrick Atrium"
+            "end_time": "10:00 PM",
+            "title": "AI Workshop Pt 1 (Eric Fithian)",
+            "location": "TBD/Zoom"
+        },
+        {
+            "start_time": "10:00 PM",
+            "end_time": "10:00 PM",
+            "title": "HACKING COMMENCES",
+            "location": "N/A"
         }
     ],
     "Saturday": [
         {
-            "start_time": "8:00 AM",
-            "end_time": "8:30 AM",
-            "title": "Breakfast",
-            "location": "Twinnie's Cafe"
+            "start_time": "9:00 AM",
+            "end_time": "12:30 PM",
+            "title": "Brunch",
+            "location": "Penn"
+        },
+        {
+            "start_time": "9:00 AM",
+            "end_time": "11:00 AM",
+            "title": "AI Workshop Pt 2 (Eric Fithian)",
+            "location": "TBD/Zoom"
+        },
+        {
+            "start_time": "10:00 AM",
+            "end_time": "12:00 PM",
+            "title": "Sponsor Fair",
+            "location": "Penn"
+        },
+        {
+            "start_time": "11:30 AM",
+            "end_time": "12:30 PM",
+            "title": "Copilot Workshop",
+            "location": "Garden"
         },
         {
             "start_time": "1:00 PM",
-            "end_time": "1:30 PM",
-            "title": "Checkbook Info Session",
-            "location": "Zoom"
+            "end_time": "2:00 PM",
+            "title": "Talk by Sanjay Kamlani",
+            "location": "Garden"
         },
         {
-            "start_time": "2:00 PM",
-            "end_time": "2:30 PM",
-            "title": "Track Talk: Inequality",
-            "location": "Wilkinson 136"
+            "start_time": "2:15 PM",
+            "end_time": "3:15 PM",
+            "title": "Talk by Justin Klein",
+            "location": "Garden"
+        },
+        {
+            "start_time": "3:30 PM",
+            "end_time": "4:30 PM",
+            "title": "Backend Workshop (John Whitman)",
+            "location": "Garden"
+        },
+        {
+            "start_time": "5:00 PM",
+            "end_time": "6:00 PM",
+            "title": "Frontend Workshop (Jake Palmer)",
+            "location": "Garden"
+        },
+        {
+            "start_time": "6:00 PM",
+            "end_time": "7:30 PM",
+            "title": "Dinner",
+            "location": "Penn"
+        },
+        {
+            "start_time": "8:00 PM",
+            "end_time": "11:30 PM",
+            "title": "Poker Tournament (DQF)",
+            "location": "Garden"
         }
     ],
     "Sunday": [
         {
-            "start_time": "8:00 AM",
-            "end_time": "8:30 AM",
-            "title": "Breakfast",
-            "location": "Twinnie's Cafe"
+            "start_time": "12:00 AM",
+            "end_time": "8:00 AM",
+            "title": "Ramen",
+            "location": "Penn"
         },
         {
-            "start_time": "12:00 PM",
-            "end_time": "1:00 PM",
-            "title": "Lunch",
-            "location": "Twinnie's Cafe"
+            "start_time": "9:00 AM",
+            "end_time": "1:30 PM",
+            "title": "Brunch",
+            "location": "Penn"
         },
         {
-            "start_time": "3:00 PM",
-            "end_time": "4:00 PM",
-            "title": "Spicy Noodle Challenge",
-            "location": "Twinnie's Cafe"
+            "start_time": "10:00 AM",
+            "end_time": "10:30 AM",
+            "title": "HACKING ENDS",
+            "location": "Penn"
         },
         {
-            "start_time": "6:00 PM",
-            "end_time": "7:00 PM",
-            "title": "Dinner",
-            "location": "Twinnie's Cafe"
+            "start_time": "10:00 AM",
+            "end_time": "12:00 PM",
+            "title": "Prep Pitch",
+            "location": "Penn"
         },
         {
-            "start_time": "9:00 PM",
-            "end_time": "10:00 PM",
-            "title": "TechTreeRoot Info Session",
-            "location": "Twinnie's Cafe"
+            "start_time": "2:00 PM",
+            "end_time": "3:30 PM",
+            "title": "Judging",
+            "location": "Penn"
+        },
+        {
+            "start_time": "4:30 PM",
+            "end_time": "5:30 PM",
+            "title": "Closing Ceremony (Sherard Griffin)",
+            "location": "Penn"
         }
     ]
 }
