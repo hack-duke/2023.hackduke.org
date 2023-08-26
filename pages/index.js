@@ -916,6 +916,7 @@ export default function Home() {
                             width: `${parallaxParameters.foreground_buildings.schedule.text.w}`,
                             height: `${parallaxParameters.foreground_buildings.schedule.text.h}`,
                         }}>
+                        <p style={{textAlign: "center", fontSize: "1.5vw"}}>Please note that the schedule is subject to change</p>
                         {Object.entries(scheduleData).map((entry) => {
                             const [day, events] = entry;
 
@@ -946,7 +947,6 @@ export default function Home() {
                                         return (
                                             <div
                                                 style={{
-                                                    marginBottom: "1rem",
                                                     display: "flex",
                                                     justifyContent: "space-between",
                                                     marginRight: "1rem",
