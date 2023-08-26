@@ -647,7 +647,7 @@ export default function Home() {
                                                 ${parallaxParameters.billboard.z})`,
                         zIndex: 999
                     }}>
-                    <img className="absolute w-full" src="/billboard.svg"></img>
+                    <img className="absolute w-full" src="/billboard.webp"></img>
                     <div
                         className="font-manrope max-width-[20%] absolute whitespace-normal text-center"
                         style={{
