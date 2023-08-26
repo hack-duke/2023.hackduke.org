@@ -645,6 +645,7 @@ export default function Home() {
                                     translate3d(${parallaxParameters.billboard.x},
                                                 ${parallaxParameters.billboard.y},
                                                 ${parallaxParameters.billboard.z})`,
+                        zIndex: 999
                     }}>
                     <img className="absolute w-full" src="/billboard.svg"></img>
                     <div
