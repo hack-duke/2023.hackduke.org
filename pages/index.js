@@ -648,7 +648,7 @@ export default function Home() {
                                                 ${parallaxParameters.upper_highway.y},
                                                 ${parallaxParameters.upper_highway.z})`,
                     }}>
-                    <img className="absolute w-full" src="/upper_highway.svg"></img>
+                    <img className="absolute w-full" src="/upper_highway.webp"></img>
                     {!showModal && (
                         <div>
                             <div className="target-parent" onClick={() => openModal("/education_modal.svg")}>
