@@ -292,7 +292,7 @@ const parallaxParameters = {
     },
 };
 
-const Modal = ({ onClose, svgSrc, setShowModal }) => {
+const Modal = ({ onClose, svgSrc, setShowModal, closeSvgSrc }) => {
     return (
         <div
             className="fixed z-[9] flex h-[100vh] w-[100vw] content-center bg-red-600 bg-opacity-10"
@@ -318,7 +318,7 @@ const Modal = ({ onClose, svgSrc, setShowModal }) => {
                                                     ${parallaxParameters.modal.close.z})`,
                     }}
                     onClick={onClose}>
-                    <img className="absolute w-full" src="/modal_close.svg"></img>
+                    <img className="absolute w-full" src={closeSvgSrc}></img>
                 </div>
             </div>
         </div>
@@ -423,8 +423,8 @@ export default function Home() {
         return setInterval(() => {
             setCurrentFAQIndex((prevIndex) => (prevIndex + 1) % faqs.length);
         }, 5000);
-    };
-
+    }
+    
     const intervalRef = useRef(null);
 
     useEffect(() => {
@@ -440,7 +440,7 @@ export default function Home() {
         }
         clearInterval(intervalRef.current);
         intervalRef.current = startInterval();
-    };
+    }
 
     const previousFAQ = () => {
         if (currentFAQIndex > 0) {
@@ -450,13 +450,16 @@ export default function Home() {
         }
         clearInterval(intervalRef.current);
         intervalRef.current = startInterval();
-    };
+    }
+    
 
     const [showModal, setShowModal] = useState(false);
     const [modalSvgSrc, setModalSvgSrc] = useState("");
+    const [closeSvgSrc, setCloseSvgSrc] = useState("");
 
-    const openModal = (svgSrc) => {
+    const openModal = (svgSrc, closeSvgSrc) => {
         setModalSvgSrc(svgSrc);
+        setCloseSvgSrc(closeSvgSrc);
         setShowModal(true);
     };
 
@@ -500,49 +503,50 @@ export default function Home() {
     const faqs = [
         {
             question: "When is the application deadline?",
-            answer: "Applications will close on September 4th at 11:59 PM EST, and all decisions will be released by Wednesday, September 6th. We hope to see you all there, so make sure to apply!",
+            answer: "Applications will close on Tuesday, September 5th at 11:59 PM ET, and all decisions will be released by Wednesday, September 6th. We hope to see you all there, so make sure to apply!"
         },
         {
             question: "Who can I work with?",
-            answer: "Anyone! You are welcome to work alone, but we definitely recommend working with a team and get to know your fellow programmers from Duke and other schools! Teams can have up to 4 students, no exceptions. The only request that we have is that you make a new friend and learn something new by talking to each other, our mentors, and our experts!",
+            answer: "Anyone! You are welcome to work alone, but we definitely recommend working with a team and get to know your fellow programmers from Duke and other schools! Teams can have up to 4 students, no exceptions. The only request that we have is that you make a new friend and learn something new by talking to each other, our mentors, and our experts!"
         },
         {
             question: "When? Where?",
-            answer: "Code for Good starts Friday, September 8 at 5:00 PM EST and ends Sunday, September 10 at 6:30 PM EST. It will be hosted on Duke University's West Campus, in and around Penn Pavilion. All links and info will be included in our hacker guide, which will be sent out before the event begins.",
+            answer: "Code for Good starts Friday, September 8 at 5:00 PM EST and ends Sunday, September 10 at 6:30 PM EST. It will be hosted on Duke University's West Campus, in and around Penn Pavilion. All links and info will be included in our hacker guide, which will be sent out before the event begins."
         },
         {
             question: "What if I’m new to coding?",
-            answer: "We welcome everyone to apply, regardless of your background in tech! Even if you have limited coding or technical experience, we will have a beginner track as well as plenty of talks and workshops scheduled to introduce you to a plethora of different tools and technologies. Mentors will also be available throughout the weekend to help out if you ever get stuck or run out of ideas.",
+            answer: "We welcome everyone to apply, regardless of your background in tech! Even if you have limited coding or technical experience, we will have a beginner track as well as plenty of talks and workshops scheduled to introduce you to a plethora of different tools and technologies. Mentors will also be available throughout the weekend to help out if you ever get stuck or run out of ideas."
         },
         {
             question: "What can I make?",
-            answer: "We welcome all software and hardware hacks that align with our tracks. Our mission is to code for social good, so make sure to create a project that is impactful for the track you have chosen! We will also have lab space and limited equipment available for hardware projects.",
+            answer: "We welcome all software and hardware hacks that align with our tracks. Our mission is to code for social good, so make sure to create a project that is impactful for the track you have chosen! We will also have lab space and limited equipment available for hardware projects."
         },
         {
             question: "Who can participate?",
-            answer: "You can participate as long as you're a student (undergraduate or graduate) 18 years or older. If you are a new grad, we’d love to have you as well! We aim to be beginner-friendly, so, all are welcome!",
+            answer: "You can participate as long as you're a student (undergraduate or graduate) 18 years or older. If you are a new grad, we’d love to have you as well! We aim to be beginner-friendly, so, all are welcome!"
         },
         {
             question: "What should I bring?",
-            answer: "Bring your laptop, chargers, ethernet cables (or just use Wi-Fi), potential toiletries/sleeping bags, and a spirit to Code for Good!",
+            answer: "Bring your laptop, chargers, ethernet cables (or just use Wi-Fi), potential toiletries/sleeping bags, and a spirit to Code for Good!"
         },
         {
             question: "How can I get involved or help?",
-            answer: "In you are interested in volunteering and helping out with the day-of logistics, please send us an email at hackers@hackduke.org. If you are interested in mentoring hackers with tech or track-specific knowledge, drop us an email at hackers@hackduke.org. To get involved with sponsorship opportunities, reach out to us at sponsorship@hackduke.org!",
+            answer: "In you are interested in volunteering and helping out with the day-of logistics, please send us an email at hackers@hackduke.org. If you are interested in mentoring hackers with tech or track-specific knowledge, drop us an email at hackers@hackduke.org. To get involved with sponsorship opportunities, reach out to us at sponsorship@hackduke.org!"
         },
         {
             question: "Will there be prizes?",
-            answer: "Yes! There will be grand prize and novice winners for each track. In addition, there will also be many company-sponsored prizes. These often come with the requirement that you incorporate certain technologies into your project. Please check the prizes page and devpost for specifics!",
+            answer: "Yes! There will be grand prize and novice winners for each track. In addition, there will also be many company-sponsored prizes. These often come with the requirement that you incorporate certain technologies into your project. Please check the prizes page and devpost for specifics!"
         },
         {
             question: "Still have questions?",
-            answer: "Email us at hackers@hackduke.org!",
-        },
+            answer: "Email us at hackers@hackduke.org!"
+        }
     ];
+    
 
     return (
         <>
-            {/* <div className="absolute top-[10rem] left-0 h-screen w-[125vw]" style={{overflow: "hidden", height:"100vh", zIndex: 2}}>
+         {/* <div className="absolute top-[10rem] left-0 h-screen w-[125vw]" style={{overflow: "hidden", height:"100vh", zIndex: 2}}>
                         <img src="/buildings-cropped.svg" className="" style={{maxHeight: "120vh", width: "100vw", objectFit: "cover", objectPosition: "0 0"}}/>
         </div> */}
             <div className="fixed right-[50px] z-10 w-[10%] min-w-[60px] hover:cursor-pointer">
@@ -557,10 +561,8 @@ export default function Home() {
                     />
                 </a>
             </div>
-            {showModal && <Modal onClose={closeModal} svgSrc={modalSvgSrc} setShowModal={setShowModal} />}
-            <div
-                className="h-screen w-screen overflow-y-auto overflow-x-hidden"
-                style={{ perspective: "5px", zIndex: 4 }}>
+            {showModal && <Modal onClose={closeModal} svgSrc={modalSvgSrc} setShowModal={setShowModal} closeSvgSrc={closeSvgSrc}/>}
+            <div className="h-screen w-screen overflow-y-auto overflow-x-hidden" style={{ perspective: "5px", zIndex: 4 }}>
                 {/* Background */}
                 <div
                     className="absolute w-full max-w-none"
@@ -571,8 +573,8 @@ export default function Home() {
                                                 ${parallaxParameters.background.z})`,
                     }}>
                     <Stars>
-                        <img className="fixed w-full" src="/backgroundnostars.svg" style={{ zIndex: 1 }}></img>
-                        <img className="fixed w-full" src="/buildings-cropped.svg" style={{ zIndex: 3 }}></img>
+                        <img className="fixed w-full" src="/backgroundnostars.svg" style={{zIndex: 1}}></img>
+                        <img className="fixed w-full" src="/buildings-cropped.svg" style={{zIndex: 3}}></img>
                     </Stars>
 
                     <div className="absolute top-[-8vh] left-[-10vw] h-screen w-[125vw] scale-[70%] lg:left-[5vw] lg:top-[5vh] lg:scale-[100%]">
@@ -650,7 +652,7 @@ export default function Home() {
                                     translate3d(${parallaxParameters.billboard.x},
                                                 ${parallaxParameters.billboard.y},
                                                 ${parallaxParameters.billboard.z})`,
-                        zIndex: 999,
+                        zIndex: 999
                     }}>
                     <img className="absolute w-full" src="/billboard.webp"></img>
                     <div
@@ -714,7 +716,7 @@ export default function Home() {
                             <img
                                 src="/speakers/left_arrow.svg"
                                 alt="left arrow"
-                                className="h-full w-full"
+                                className="w-full h-full"
                                 onClick={previousFAQ}
                             />
                         </div>
@@ -743,7 +745,7 @@ export default function Home() {
                     <img className="absolute w-full" src="/upper_highway.webp"></img>
                     {!showModal && (
                         <div>
-                            <div className="target-parent" onClick={() => openModal("/education_modal.svg")}>
+                            <div className="target-parent" onClick={() => openModal("/education_modal.svg", "/education_close_button.svg")}>
                                 {/* Education Target */}
                                 <div
                                     className="relative cursor-pointer"
@@ -768,7 +770,7 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="target-parent" onClick={() => openModal("/health_modal.svg")} d>
+                            <div className="target-parent" onClick={() => openModal("/health_modal.svg", "/health_close_button.svg")} >
                                 {/* Health Target */}
                                 <div
                                     className="relative cursor-pointer"
@@ -793,7 +795,7 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="target-parent" onClick={() => openModal("/inequality_modal.svg")}>
+                            <div className="target-parent" onClick={() => openModal("/finance_modal.svg", "/finance_close_button.svg")}>
                                 {/* Inequality Target */}
                                 <div
                                     className="relative cursor-pointer"
@@ -818,7 +820,7 @@ export default function Home() {
                                 </div>
                             </div>
 
-                            <div className="target-parent" onClick={() => openModal("/environment_modal.svg")}>
+                            <div className="target-parent" onClick={() => openModal("/environment_modal.svg", "/environment_close_button.svg")}>
                                 {/* Environment Target */}
                                 <div
                                     className="relative cursor-pointer"
@@ -920,9 +922,7 @@ export default function Home() {
                             width: `${parallaxParameters.foreground_buildings.schedule.text.w}`,
                             height: `${parallaxParameters.foreground_buildings.schedule.text.h}`,
                         }}>
-                        <p style={{ textAlign: "center", fontSize: "1.5vw" }}>
-                            Please note that the schedule is subject to change
-                        </p>
+                        <p style={{textAlign: "center", fontSize: "1.5vw"}}>Please note that the schedule is subject to change</p>
                         {Object.entries(scheduleData).map((entry) => {
                             const [day, events] = entry;
 
