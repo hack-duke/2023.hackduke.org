@@ -187,9 +187,9 @@ const parallaxParameters = {
             z: "-1.2px",
         },
         inequality: {
-            scale: "0.23",
-            x: "-120vw",
-            y: "210vw",
+            scale: "0.18",
+            x: "-166vw",
+            y: "268vw",
             z: "-1.2px",
         },
     },
